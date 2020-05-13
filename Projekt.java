@@ -45,14 +45,30 @@ public class Projekt extends Application {
         
         List<Coordinate> coordinates = new ArrayList<>();
         coordinates.add(new Coordinate(100, 100));
-        Vehicle vehicle = new Vehicle(coordinates.get(0), 2, new Path(Arrays.asList(
-            new Coordinate(100, 100),
-            new Coordinate(500, 500)
-        )));
+        coordinates.add(new Coordinate(100, 200));
+        Vehicle vehicle = new Vehicle(
+            coordinates.get(1), 
+            2, 
+            new Path(Arrays.asList(new Coordinate(100, 200),new Coordinate(500, 500),new Coordinate(200, 100),new Coordinate(300, 200))),1);
+        
+        Vehicle vehicle2 = new Vehicle(
+            coordinates.get(0), 
+            2, 
+            new Path(Arrays.asList(new Coordinate(100, 100),new Coordinate(500, 500))),2);
+        
         elements.add(vehicle);
-        elements.add(new Street("Test street",  new Coordinate(100, 100), new Coordinate(500, 500))); 
+        elements.add(vehicle2);
+        //elements.add(new Street("Test streetA",  new Coordinate(100, 100), new Coordinate(500, 500))); 
+        elements.add(new Street("Test streetC",  new Coordinate(200, 100), new Coordinate(300, 200), 3)); 
+        elements.add(new Street("Test streetB",  new Coordinate(500, 500), new Coordinate(100, 800), 4)); 
+        elements.add(new Street("Test street2",  new Coordinate(100, 200), new Coordinate(500, 500), 5)); 
         
         controller.setElements(elements);
+        //elements.remove(vehicle);
+        System.out.println("Elementy: ");
+        System.out.print(elements);
+        //controller.setElements(elements);
+        //controller.removeElement(vehicle);
         controller.startTime(1);
         
         Data data = new Data(coordinates, vehicle);

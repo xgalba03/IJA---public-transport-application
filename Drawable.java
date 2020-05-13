@@ -14,4 +14,6 @@ import javafx.scene.shape.Shape;
  */
 public interface Drawable {
     List<Shape> getGui();
+    double getID();
+    boolean getBool();
 }

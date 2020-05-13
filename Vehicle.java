@@ -26,22 +26,38 @@ public class Vehicle implements Drawable, TimeUpdate{
     private Coordinate position;
     private double speed = 0;
     private double distance = 0;
+    private double id = 0;
+    private boolean done = false;  
     private Path path;
     @JsonIgnore
     private List<Shape> gui;
     
+    
+    
     private Vehicle(){}
     
-    public Vehicle(Coordinate position, double speed, Path path) {
+    public Vehicle(Coordinate position, double speed, Path path, double ID) {
+        this.id = ID;
         this.position = position;
         this.speed = speed;
         this.path = path;
+        this.done = false;
         setGui();
       
     }
 
     public Path getPath() {
         return path;
+    }
+    
+    @Override
+    public double getID(){
+        return this.id;
+    }
+    
+    @Override
+    public boolean getBool(){
+        return this.done;
     }
         
     
@@ -55,8 +71,7 @@ public class Vehicle implements Drawable, TimeUpdate{
     }
     @JsonIgnore
     @Override
-    public List<Shape> getGui(){
-       
+    public List<Shape> getGui(){    
        return gui; 
     }
 
@@ -64,8 +79,9 @@ public class Vehicle implements Drawable, TimeUpdate{
     @Override
     public Integer update(LocalTime time) {
         if(distance >= path.getPathSize()){
-            distance = 0;
-            this.position = position;
+            //distance = 0;
+            //this.position = position;
+            this.done = true;           
             return -1;  
         }
         distance += speed;
@@ -90,7 +106,7 @@ public class Vehicle implements Drawable, TimeUpdate{
 
     @Override
     public String toString() {
-        return "Vehicle{" + "position=" + position + ", speed=" + speed + '}';
+        return "Vehicle{" + "position=" + position + ", speed=" + speed + ", id=" + id + '}';
     }
 
     private void setGui() {

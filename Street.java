@@ -19,10 +19,13 @@ public class Street implements Drawable{
     private Coordinate start;
     private Coordinate stop;
     private String name;
-    public Street(String name, Coordinate start, Coordinate stop){
+    private double id;
+    private boolean bool;
+    public Street(String name, Coordinate start, Coordinate stop, double id){
         this.name = name;
         this.start = start;
         this.stop = stop;
+        this.id = id;
     }
 
     
@@ -32,5 +35,15 @@ public class Street implements Drawable{
                 new Text(start.getX() + (Math.abs(start.getX() - stop.getX()) /2), start.getY() + (Math.abs(start.getY() - stop.getY()) /2), name), 
                 new Line(start.getX(), start.getY(), stop.getX(), stop.getY())
         ); 
+    } 
+    
+    @Override
+    public double getID(){
+        return this.id;
+    } 
+    
+    @Override
+    public boolean getBool(){
+        return true;
     } 
 }

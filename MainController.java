@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -28,7 +29,6 @@ import javafx.scene.layout.Pane;
 public class MainController implements Initializable {
     @FXML
     private Pane content;
-
     private Timer timer;
     private List<Drawable> elements = new ArrayList<>();
     private LocalTime time = LocalTime.now();
@@ -75,16 +75,44 @@ public class MainController implements Initializable {
         }
     }
     
+    public void removeElement(){
+        for (Drawable drawable : elements){
+            if (drawable.getBool() == true){
+                content.getChildren().removeAll(drawable.getGui());
+            }
+        }
+    }
+    
     public void startTime(double scale){
+        elements = this.elements;
         timer = new Timer(false);
+        
         timer.scheduleAtFixedRate(new TimerTask(){
         @Override
         public void run(){
             time = time.plusSeconds(1);
             for(TimeUpdate update : updates){
-               update.update(time);
-                //System.out.println(update.update(time));
-            }
+               System.out.print("Update " + update);
+               Integer returner = update.update(time);
+               
+               if (returner == -1){
+                System.out.println("END:\n \n \n ");
+                updates.remove(update);
+                Platform.runLater(new Runnable() {
+                   
+                    @Override
+                    public void run() {
+                        removeElement();
+                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+                });
+                
+                 
+                break;
+               }
+
+              // System.out.println(update);
+            } 
         }
         }, 0, (long )(1000 / scale));
     }
