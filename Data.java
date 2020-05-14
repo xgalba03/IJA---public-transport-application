@@ -5,6 +5,7 @@
  */
 package projekt;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,17 +15,27 @@ import java.util.List;
 public class Data {
     private List<Coordinate> coordinates;
     private Vehicle vehicle;
+    private List<MyLine> lines;
     
     private Data(){
     }
     
-    public Data(List<Coordinate> coordinates, Vehicle vehicle){
+   /* public Data(List<Coordinate> coordinates, Vehicle vehicle){
         this.coordinates = coordinates;
         this.vehicle = vehicle;
+    }*/
+    
+    public Data(List<MyLine> line){
+        this.lines = line;
     }
+
 
     public List<Coordinate> getCoordinates() {
         return coordinates;
+    }
+    
+    public List<MyLine> getLines() {
+        return lines;
     }
 
     public Vehicle getVehicle() {

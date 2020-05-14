@@ -46,6 +46,8 @@ public class Projekt extends Application {
         List<Coordinate> coordinates = new ArrayList<>();
         coordinates.add(new Coordinate(100, 100));
         coordinates.add(new Coordinate(100, 200));
+        coordinates.add(new Coordinate(200, 200));
+        coordinates.add(new Coordinate(300, 300));
         
         Street ulica1 = new Street("Test streetC",  new Coordinate(200, 100), new Coordinate(300, 200), 3);
         Street ulica2 = new Street("Test streetB",  new Coordinate(500, 500), new Coordinate(100, 800), 4);
@@ -74,21 +76,45 @@ public class Projekt extends Application {
         elements.add(ulica2); 
         elements.add(ulica3); 
         
-        controller.setElements(elements);
+        //controller.setElements(elements);
         //elements.remove(vehicle);
         System.out.println("Elementy: ");
         System.out.print(elements);
         //controller.setElements(elements);
         //controller.removeElement(vehicle);
+        //controller.startTime(1);
+        
+        MyLine line = new MyLine("10");
+        line.stops.add(new Stop("Technické múzeum",new Coordinate(100,100)));
+        line.stops.add(new Stop("Skácelova",new Coordinate(200,200)));
+        line.stops.add(new Stop("trefejova",new Coordinate(300,300)));
+        line.vehicles.add(new Vehicle(
+            coordinates.get(1), 
+            2, 
+            linka2,1));
+        
+        //Data data = new Data(coordinates, vehicle);
+        List<MyLine> lines = new ArrayList<>();
+        lines.add(line);
+        
+        List<Drawable> elements_two = new ArrayList<>();
+        for (int i = 0; i < line.vehicles.size(); i++) {
+            elements_two.add(line.vehicles.get(i));
+        }
+        for (int i = 0; i < line.stops.size(); i++) {
+            elements_two.add(line.stops.get(i));
+        }
+        controller.setElements(elements_two);
         controller.startTime(1);
         
-        Data data = new Data(coordinates, vehicle);
+        Data data = new Data(lines);
+        
         
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory); 
         //Vehicle vehicle1 = mapper.readValue(new File("test.yaml"), Vehicle.class);
         //System.out.println(vehicle1.getPosition());
-        mapper.writeValue(new File("test.yaml"), data);
+        //mapper.writeValue(new File("test.yaml"), data);
     } 
 
     /**
