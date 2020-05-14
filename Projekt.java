@@ -46,22 +46,33 @@ public class Projekt extends Application {
         List<Coordinate> coordinates = new ArrayList<>();
         coordinates.add(new Coordinate(100, 100));
         coordinates.add(new Coordinate(100, 200));
+        
+        Street ulica1 = new Street("Test streetC",  new Coordinate(200, 100), new Coordinate(300, 200), 3);
+        Street ulica2 = new Street("Test streetB",  new Coordinate(500, 500), new Coordinate(100, 800), 4);
+        Street ulica3 = new Street("Test street2",  new Coordinate(100, 200), new Coordinate(500, 500), 5);
+        
+        Path linka1 = new Path(Arrays.asList(new Coordinate(200, 100),new Coordinate(300, 200)));
+        Path linka2 = new Path(Arrays.asList(new Coordinate(100, 200),new Coordinate(500, 500),new Coordinate(100, 800)));
+        
+        //linka1.addStreet(ulica1);
+        //linka1.addStreet(ulica2);
+        
         Vehicle vehicle = new Vehicle(
             coordinates.get(1), 
             2, 
-            new Path(Arrays.asList(new Coordinate(100, 200),new Coordinate(500, 500),new Coordinate(200, 100),new Coordinate(300, 200))),1);
+            linka2,1);
         
         Vehicle vehicle2 = new Vehicle(
             coordinates.get(0), 
             2, 
-            new Path(Arrays.asList(new Coordinate(100, 100),new Coordinate(500, 500))),2);
+            linka1,2);
         
         elements.add(vehicle);
         elements.add(vehicle2);
         //elements.add(new Street("Test streetA",  new Coordinate(100, 100), new Coordinate(500, 500))); 
-        elements.add(new Street("Test streetC",  new Coordinate(200, 100), new Coordinate(300, 200), 3)); 
-        elements.add(new Street("Test streetB",  new Coordinate(500, 500), new Coordinate(100, 800), 4)); 
-        elements.add(new Street("Test street2",  new Coordinate(100, 200), new Coordinate(500, 500), 5)); 
+        elements.add(ulica1); 
+        elements.add(ulica2); 
+        elements.add(ulica3); 
         
         controller.setElements(elements);
         //elements.remove(vehicle);

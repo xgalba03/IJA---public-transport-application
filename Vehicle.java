@@ -12,9 +12,12 @@ import com.fasterxml.jackson.databind.util.StdConverter;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
+
 
 /**
  *
@@ -111,7 +114,17 @@ public class Vehicle implements Drawable, TimeUpdate{
 
     private void setGui() {
         gui = new ArrayList<>( );
-        gui.add(new Circle(position.getX(), position.getY(), 8, Color.BLUE));
+        Circle circle = new Circle(position.getX(), position.getY(), 8, Color.BLUE);
+        
+        circle.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent t) {
+                System.out.println("Whadup");
+                circle.setFill(Color.RED);
+            }
+        });
+        gui.add(circle);
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
