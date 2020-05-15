@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -105,23 +107,30 @@ public class MainController implements Initializable {
                Integer returner = update.update(time);
                writeTime();
                
+               if (returner == 2){
+                   System.out.print("Zastavka............................");
+                   updates.remove(update);
+                   try {
+                       Thread.sleep(5000);
+                   } catch (InterruptedException ex) {
+                       Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+                   updates.add(update);
+               }
+               
                if (returner == -1){
                 System.out.println("END:\n \n \n ");
                 updates.remove(update);
-                Platform.runLater(new Runnable() {
-                   
+                Platform.runLater(new Runnable() {              
                     @Override
                     public void run() {
                         removeElement();
-                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
                 });
                 
                  
                 break;
                }
-
-              // System.out.println(update);
             } 
         }
         }, 0, (long )(1000 / scale));

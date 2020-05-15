@@ -8,6 +8,7 @@ package projekt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.util.StdConverter;
+import static java.lang.Math.floor;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     private void moveGui(Coordinate coordinate){
         for(Shape shape: gui){
-            System.out.println("moveGui");
+            System.out.println("moveGui"+ this.position);
             shape.setTranslateX((coordinate.getX() - position.getX()) + shape.getTranslateX());
             shape.setTranslateY((coordinate.getY() - position.getY()) + shape.getTranslateY());
         }
@@ -81,12 +82,15 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     @Override
     public Integer update(LocalTime time) {
+        List<Coordinate> zastavky = this.path.getPath();
         if(distance >= path.getPathSize()){
             //distance = 0;
             //this.position = position;
             this.done = true;           
             return -1;  
         }
+        
+
         distance += speed;
         System.out.println(distance);
         System.out.println(path.getPathSize());
@@ -95,6 +99,15 @@ public class Vehicle implements Drawable, TimeUpdate{
         Coordinate coords = path.getCoordinateByDistance(distance);
         moveGui(coords);
         position = coords;
+        
+        for(Integer i = 0;i < zastavky.size();i++){
+            System.out.println("Porovnavam " + floor(this.position.getX())+ " plus " + floor(this.position.getY())+ " VS " + zastavky.get(i).getX()+ " a " + zastavky.get(i).getY());
+            if(floor(this.position.getX()) == zastavky.get(i).getX() && floor(this.position.getY()) == zastavky.get(i).getY()){
+                System.out.println("ZASTAVKA YEAH" + " " + " " + "");
+                return 2;
+            }
+        }
+        
         return 0;
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
