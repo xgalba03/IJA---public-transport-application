@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -36,13 +35,15 @@ public class MainController implements Initializable {
     
     @FXML
     private TextField timeScale;
+    @FXML
+    private TextField clock;
     
     @FXML
     private void onTimeScaleChange(){
         try{
             float scale = Float.parseFloat(timeScale.getText());
             if(scale <= 0){
-                 Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Time Scale");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Time Scale");
                 alert.show();
                 return;
             }
@@ -64,6 +65,7 @@ public class MainController implements Initializable {
         content.setScaleY(zoom * content.getScaleY());
         content.layout();
     }
+    
 
     public void setElements(List<Drawable> elements) {
         this.elements = elements;
@@ -83,6 +85,13 @@ public class MainController implements Initializable {
         }
     }
     
+    @FXML
+    public void writeTime(){
+        clock.setText(time.toString());
+        timeScale.getText();
+    }
+    
+    
     public void startTime(double scale){
         elements = this.elements;
         timer = new Timer(false);
@@ -92,8 +101,9 @@ public class MainController implements Initializable {
         public void run(){
             time = time.plusSeconds(1);
             for(TimeUpdate update : updates){
-               System.out.print("Update " + update);
+               System.out.print("Update " + update + "čas je:" + time);
                Integer returner = update.update(time);
+               writeTime();
                
                if (returner == -1){
                 System.out.println("END:\n \n \n ");

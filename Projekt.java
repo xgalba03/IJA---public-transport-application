@@ -91,7 +91,7 @@ public class Projekt extends Application {
         line.vehicles.add(new Vehicle(
             coordinates.get(1), 
             2, 
-            linka2,1));
+            new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c)),1));
         
         //Data data = new Data(coordinates, vehicle);
         List<MyLine> lines = new ArrayList<>();
