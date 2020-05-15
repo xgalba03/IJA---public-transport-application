@@ -10,6 +10,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
+import java.time.LocalTime;
 
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -21,6 +22,9 @@ import javafx.stage.Stage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
 import javafx.scene.shape.Line;
 
 /**
@@ -28,7 +32,7 @@ import javafx.scene.shape.Line;
  * @author localadmin
  */
 public class Projekt extends Application {
-    
+    private LocalTime time = LocalTime.now();
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
@@ -52,6 +56,11 @@ public class Projekt extends Application {
         Street ulica1 = new Street("Test streetC",  new Coordinate(200, 100), new Coordinate(300, 200), 3);
         Street ulica2 = new Street("Test streetB",  new Coordinate(500, 500), new Coordinate(100, 800), 4);
         Street ulica3 = new Street("Test street2",  new Coordinate(100, 200), new Coordinate(500, 500), 5);
+        
+        Street ulica4 = new Street("Antoninska",  new Coordinate(100, 100), new Coordinate(200, 200), 5);
+        Street ulica5 = new Street("Mukačevova",  new Coordinate(200, 200), new Coordinate(300, 300), 6);
+        Street ulica6 = new Street("Štefániková",  new Coordinate(300, 300), new Coordinate(200, 400), 7);
+        Street ulica7 = new Street("Roosveltova",  new Coordinate(200, 400), new Coordinate(300, 500), 8);
         
         Path linka1 = new Path(Arrays.asList(new Coordinate(200, 100),new Coordinate(300, 200)));
         Path linka2 = new Path(Arrays.asList(new Coordinate(100, 200),new Coordinate(500, 500),new Coordinate(100, 800)));
@@ -87,11 +96,13 @@ public class Projekt extends Application {
         MyLine line = new MyLine("10");
         line.stops.add(new Stop("Technické múzeum",new Coordinate(100,100)));
         line.stops.add(new Stop("Skácelova",new Coordinate(200,200)));
-        line.stops.add(new Stop("trefejova",new Coordinate(300,300)));
+        line.stops.add(new Stop("Trefejova",new Coordinate(300,300)));
+        line.stops.add(new Stop("Južná",new Coordinate(200,400)));
+        line.stops.add(new Stop("Hlavná",new Coordinate(300,500)));
         line.vehicles.add(new Vehicle(
             coordinates.get(1), 
             2, 
-            new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c)),1));
+            new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c,line.stops.get(3).c,line.stops.get(4).c)),1));
         
         //Data data = new Data(coordinates, vehicle);
         List<MyLine> lines = new ArrayList<>();
@@ -104,10 +115,30 @@ public class Projekt extends Application {
         for (int i = 0; i < line.stops.size(); i++) {
             elements_two.add(line.stops.get(i));
         }
+        elements_two.add(ulica4);
+        elements_two.add(ulica5);
+        elements_two.add(ulica6);
+        elements_two.add(ulica7);
+        elements_two.add(vehicle2);
         controller.setElements(elements_two);
         controller.startTime(1);
         
-        Data data = new Data(lines);
+        
+        MainController controller2 = controller;
+        //controller2.setElements(elements_two);
+        
+        new java.util.Timer().schedule( 
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        controller2.startTime(1);
+                    }
+                }, 
+                5000 
+        );
+        
+        
+        //Data data = new Data(lines);
         
         
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);

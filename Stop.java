@@ -42,7 +42,8 @@ public class Stop implements Drawable{
     @Override
     public List<Shape> getGui(){
         return Arrays.asList(
-                new Circle(c.getX(), c.getY(), 8, Color.GREY)
+                new Circle(c.getX(), c.getY(), 8, Color.GREY),
+                new Text(c.getX(),c.getY(), name)
         ); 
     } 
     

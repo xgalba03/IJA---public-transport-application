@@ -32,7 +32,7 @@ public class Street implements Drawable{
     @Override
     public List<Shape> getGui(){
         return Arrays.asList(
-                new Text(start.getX() + (Math.abs(start.getX() - stop.getX()) /2), start.getY() + (Math.abs(start.getY() - stop.getY()) /2), name), 
+                new Text((Math.abs(start.getX() + stop.getX()) /2),  (Math.abs(start.getY() + stop.getY()) /2), name), 
                 new Line(start.getX(), start.getY(), stop.getX(), stop.getY())
         ); 
     } 
