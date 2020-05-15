@@ -109,13 +109,20 @@ public class MainController implements Initializable {
                
                if (returner == 2){
                    System.out.print("Zastavka............................");
-                   updates.remove(update);
-                   try {
-                       Thread.sleep(5000);
-                   } catch (InterruptedException ex) {
-                       Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-                   updates.add(update);
+                   //updates.remove(update);
+                   //try {
+                   Platform.runLater(new Runnable() {              
+                    @Override
+                    public void run() {
+                        System.out.println("Stojim:\n \n \n ");
+                    }
+                    });
+                       System.out.println("Stojim:\n \n \n ");
+                       //Thread.sleep(5000);
+                   //} catch (InterruptedException ex) {
+                   //    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                   //}
+                   //updates.add(update);
                }
                
                if (returner == -1){

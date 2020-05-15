@@ -8,7 +8,9 @@ package projekt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.util.StdConverter;
+import static java.lang.Math.ceil;
 import static java.lang.Math.floor;
+import static java.lang.Math.round;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -102,7 +104,10 @@ public class Vehicle implements Drawable, TimeUpdate{
         
         for(Integer i = 0;i < zastavky.size();i++){
             System.out.println("Porovnavam " + floor(this.position.getX())+ " plus " + floor(this.position.getY())+ " VS " + zastavky.get(i).getX()+ " a " + zastavky.get(i).getY());
-            if(floor(this.position.getX()) == zastavky.get(i).getX() && floor(this.position.getY()) == zastavky.get(i).getY()){
+            if((floor(this.position.getX()) == zastavky.get(i).getX() && floor(this.position.getY()) == zastavky.get(i).getY())
+                || (ceil(this.position.getX()) == zastavky.get(i).getX() && ceil(this.position.getY()) == zastavky.get(i).getY())
+                    || (floor(this.position.getX()) == zastavky.get(i).getX() && ceil(this.position.getY()) == zastavky.get(i).getY())
+                    || (ceil(this.position.getX()) == zastavky.get(i).getX() && floor(this.position.getY()) == zastavky.get(i).getY())){
                 System.out.println("ZASTAVKA YEAH" + " " + " " + "");
                 return 2;
             }
