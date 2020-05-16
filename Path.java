@@ -13,7 +13,7 @@ import java.util.List;
  * @author localadmin
  */
 public class Path {
-    private List<Coordinate> path;
+    public List<Coordinate> path;
     public List<Street> ulice;
     
     public boolean addStreet(Street ulica) {

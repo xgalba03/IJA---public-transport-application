@@ -30,9 +30,9 @@ import javafx.scene.layout.Pane;
  */
 public class MainController implements Initializable {
     @FXML
-    private Pane content;
+    public Pane content;
     private Timer timer;
-    private List<Drawable> elements = new ArrayList<>();
+    List<Drawable> elements = new ArrayList<>();
     private LocalTime time = LocalTime.now();
     private List<TimeUpdate> updates = new ArrayList<>();
     
@@ -57,9 +57,21 @@ public class MainController implements Initializable {
         } catch(NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Time Scale");
             alert.show();
+        }  
+    }
+    
+    @FXML
+    private void removeHighlight(){
+        System.out.print("Removing highlights");
+        //Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Time Scale");
+        //    alert.show();
+        for (Drawable drawable : elements){
+            System.out.print("ID:" + drawable.getID()+ "" + "\n \n \n");
+            if (drawable.getID() == 99.0){
+                System.out.print("Odstranujem"+ "" + "\n \n \n");
+                content.getChildren().removeAll(drawable.getGui());
+            }
         }
-        
-        
     }
     
     @FXML

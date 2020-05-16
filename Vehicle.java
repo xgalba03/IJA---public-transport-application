@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
 
@@ -158,6 +159,20 @@ public class Vehicle implements Drawable, TimeUpdate{
             }
         control.poriadok.setText(zastavky);
         bus.setFill(Color.RED);
+        
+        for(Integer i = 0;i < this.path.path.size()-1;i++){
+                Coordinate start = new Coordinate(this.path.path.get(i).getX(),this.path.path.get(i).getY());
+                Coordinate end = new Coordinate(this.path.path.get(i+1).getX(),this.path.path.get(i+1).getY());
+                double id = 99;
+                Street street = new Street("",start,end,id);
+                //Line line = new Line(this.path.path.get(i).getX(),this.path.path.get(i).getY(),this.path.path.get(i+1).getX(),this.path.path.get(i+1).getY()); 
+                //line.setStroke(Color.YELLOW);
+                //line.setStrokeWidth(2);
+                //gui.add(line);
+                this.control.content.getChildren().addAll(street.getGui());
+                control.elements.add(street);
+                System.out.println(street);
+            }
     }
 
     @Override
