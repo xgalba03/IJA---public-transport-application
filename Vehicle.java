@@ -158,7 +158,7 @@ public class Vehicle implements Drawable, TimeUpdate{
                 zastavky = zastavky + (this.linka.stops.get(i).name) + "\n";     
             }
         control.poriadok.setText(zastavky);
-        bus.setFill(Color.RED);
+        //bus.setFill(Color.RED);
         
         for(Integer i = 0;i < this.path.path.size()-1;i++){
                 Coordinate start = new Coordinate(this.path.path.get(i).getX(),this.path.path.get(i).getY());

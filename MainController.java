@@ -63,8 +63,6 @@ public class MainController implements Initializable {
     @FXML
     private void removeHighlight(){
         System.out.print("Removing highlights");
-        //Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Time Scale");
-        //    alert.show();
         for (Drawable drawable : elements){
             System.out.print("ID:" + drawable.getID()+ "" + "\n \n \n");
             if (drawable.getID() == 99.0){
@@ -72,6 +70,7 @@ public class MainController implements Initializable {
                 content.getChildren().removeAll(drawable.getGui());
             }
         }
+        poriadok.setText("");
     }
     
     @FXML
