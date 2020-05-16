@@ -39,4 +39,5 @@ public class MyLine {
     void addVehicleToLine(Vehicle v){
         this.vehicles.add(v);
     }
+    
 }

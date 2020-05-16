@@ -48,7 +48,7 @@ public class Projekt extends Application {
         List<Drawable> elements = new ArrayList<>();
         
         List<Coordinate> coordinates = new ArrayList<>();
-        coordinates.add(new Coordinate(100, 100));
+        coordinates.add(new Coordinate(100, 300));
         coordinates.add(new Coordinate(100, 200));
         coordinates.add(new Coordinate(200, 200));
         coordinates.add(new Coordinate(300, 300));
@@ -68,7 +68,7 @@ public class Projekt extends Application {
         //linka1.addStreet(ulica1);
         //linka1.addStreet(ulica2);
         
-        Vehicle vehicle = new Vehicle(
+       /* Vehicle vehicle = new Vehicle(
             coordinates.get(1), 
             2, 
             linka2,1);
@@ -76,10 +76,10 @@ public class Projekt extends Application {
         Vehicle vehicle2 = new Vehicle(
             coordinates.get(0), 
             2, 
-            linka1,2);
+            linka1,2);*/
         
-        elements.add(vehicle);
-        elements.add(vehicle2);
+       /* elements.add(vehicle);
+        elements.add(vehicle2);*/
         //elements.add(new Street("Test streetA",  new Coordinate(100, 100), new Coordinate(500, 500))); 
         elements.add(ulica1); 
         elements.add(ulica2); 
@@ -101,30 +101,62 @@ public class Projekt extends Application {
         line.stops.add(new Stop("Hlavná",new Coordinate(300,500)));
         line.vehicles.add(new Vehicle(
             coordinates.get(1), 
-            2, 
-            new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c,line.stops.get(3).c,line.stops.get(4).c)),1));
+            1, 
+            new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c,line.stops.get(3).c,line.stops.get(4).c)),1,line,controller));
+        
+        Street ulica8 = new Street("",  new Coordinate(100, 300), new Coordinate(300, 150), 9);
+        Street ulica9 = new Street("",  new Coordinate(300, 150), new Coordinate(400,400), 10);
+        Street ulica10 = new Street("",  new Coordinate(400,400), new Coordinate(400,500), 11);
+        Street ulica11 = new Street("",  new Coordinate(400,500), new Coordinate(100,200), 12);
+        
+        MyLine line2 = new MyLine("10");
+        line2.stops.add(new Stop("Česká",new Coordinate(100,300)));
+        line2.stops.add(new Stop("Rybkova",new Coordinate(300,150)));
+        line2.stops.add(new Stop("Kraví hora",new Coordinate(400,400)));
+        line2.stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
+        line2.stops.add(new Stop("Tábor",new Coordinate(100,200)));
+        line2.vehicles.add(new Vehicle(
+            coordinates.get(0), 
+            1, 
+            new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c)),1,line2,controller));
         
         //Data data = new Data(coordinates, vehicle);
         List<MyLine> lines = new ArrayList<>();
         lines.add(line);
+        lines.add(line2);
         
         List<Drawable> elements_two = new ArrayList<>();
-        for (int i = 0; i < line.vehicles.size(); i++) {
-            elements_two.add(line.vehicles.get(i));
-        }
-        for (int i = 0; i < line.stops.size(); i++) {
-            elements_two.add(line.stops.get(i));
-        }
+        
         elements_two.add(ulica4);
         elements_two.add(ulica5);
         elements_two.add(ulica6);
         elements_two.add(ulica7);
-        elements_two.add(vehicle2);
+        elements_two.add(ulica8);
+        elements_two.add(ulica9);
+        elements_two.add(ulica10);
+        elements_two.add(ulica11);
+        
+
+        for (int i = 0; i < line2.stops.size(); i++) {
+            elements_two.add(line2.stops.get(i));
+        }
+        for (int i = 0; i < line.stops.size(); i++) {
+            elements_two.add(line.stops.get(i));
+        }
+        for (int i = 0; i < line.vehicles.size(); i++) {
+            elements_two.add(line.vehicles.get(i));
+        }
+        for (int i = 0; i < line2.vehicles.size(); i++) {
+            elements_two.add(line2.vehicles.get(i));
+        }
+
+
+        //elements_two.add(vehicle2);
         controller.setElements(elements_two);
         controller.startTime(1);
         
         
-        MainController controller2 = controller;
+       /* MainController controller2 = controller;
         //controller2.setElements(elements_two);
         
         new java.util.Timer().schedule( 
@@ -135,7 +167,7 @@ public class Projekt extends Application {
                     }
                 }, 
                 5000 
-        );
+        );*/
         
         
         //Data data = new Data(lines);

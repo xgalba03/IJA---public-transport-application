@@ -10,12 +10,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.util.StdConverter;
 import static java.lang.Math.ceil;
 import static java.lang.Math.floor;
-import static java.lang.Math.round;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -36,7 +36,9 @@ public class Vehicle implements Drawable, TimeUpdate{
     private boolean done = false;
     private boolean zastavka = false;
     private double cakanie = 0;
+    private MyLine linka;
     private Path path;
+    private MainController control;
     @JsonIgnore
     private List<Shape> gui;
     
@@ -44,13 +46,15 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     private Vehicle(){}
     
-    public Vehicle(Coordinate position, double speed, Path path, double ID) {
+    public Vehicle(Coordinate position, double speed, Path path, double ID, MyLine linka, MainController control) {
         this.id = ID;
         this.position = position;
         this.speed = speed;
         this.path = path;
         this.done = false;
         this.zastavka = false;
+        this.linka = linka;
+        this.control = control;
         setGui();
       
     }
@@ -73,7 +77,7 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     private void moveGui(Coordinate coordinate){
         for(Shape shape: gui){
-            System.out.println("moveGui"+ this.position);
+            System.out.println("moveGui"+ this.position +"get"+shape.getTranslateX());
             shape.setTranslateX((coordinate.getX() - position.getX()) + shape.getTranslateX());
             shape.setTranslateY((coordinate.getY() - position.getY()) + shape.getTranslateY());
         }
@@ -95,29 +99,28 @@ public class Vehicle implements Drawable, TimeUpdate{
             return -1;  
         }
         
+        System.out.print("Vzdialenost:" + distance+ "\n");
+        
 
           
        // moveGui(coords);
        // position = coords;
         
-       if(this.zastavka == false){
+        if(this.zastavka == false){
             for(Integer i = 0;i < zastavky.size();i++){
-            System.out.println("Porovnavam " + floor(this.position.getX())+ " plus " + floor(this.position.getY())+ " VS " + zastavky.get(i).getX()+ " a " + zastavky.get(i).getY());
-            if((floor(this.position.getX()) == zastavky.get(i).getX() && floor(this.position.getY()) == zastavky.get(i).getY())
-                || (ceil(this.position.getX()) == zastavky.get(i).getX() && ceil(this.position.getY()) == zastavky.get(i).getY())
-                    || (floor(this.position.getX()) == zastavky.get(i).getX() && ceil(this.position.getY()) == zastavky.get(i).getY())
-                    || (ceil(this.position.getX()) == zastavky.get(i).getX() && floor(this.position.getY()) == zastavky.get(i).getY())){
-                System.out.println("ZASTAVKA YEAH" + " " + " " + "");
-                this.zastavka = true;
-                return 2;
+                System.out.println("Porovnavam " + floor(this.position.getX())+ " plus " + floor(this.position.getY())+ " VS " + zastavky.get(i).getX()+ " a " + zastavky.get(i).getY());
+                if(((floor(this.position.getX()) == zastavky.get(i).getX()) || (ceil(this.position.getX()) == zastavky.get(i).getX()))
+                    && ((floor(this.position.getY()) == zastavky.get(i).getY()) || (ceil(this.position.getY()) == zastavky.get(i).getY()))){
+                    System.out.println("ZASTAVKA YEAH" + " " + " " + "");
+                    this.zastavka = true;
+                    return 2;
+                }
             }
         }
-       }
-       
-        
+  
         if(this.zastavka == false){
             distance += speed;
-        Coordinate coords = path.getCoordinateByDistance(distance); 
+            Coordinate coords = path.getCoordinateByDistance(distance); 
             moveGui(coords);
             position = coords;
         }
@@ -127,16 +130,13 @@ public class Vehicle implements Drawable, TimeUpdate{
             if(cakanie > 4){
                 this.zastavka = false;
                 distance += speed;
-        Coordinate coords = path.getCoordinateByDistance(distance); 
+                Coordinate coords = path.getCoordinateByDistance(distance); 
                 moveGui(coords);
                 position = coords;
                 cakanie = 0;
             }
-        }
-        
-        
+        }             
         return 0;
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public Coordinate getPosition(){
@@ -146,6 +146,18 @@ public class Vehicle implements Drawable, TimeUpdate{
     public double getSpeed(){
         return speed;
     }
+    
+    private void highLight(Shape bus){
+        //List<Coordinate> zastavky = this.path.getPath();
+        System.out.println("Highlighting");
+        String zastavky = "";
+        for(Integer i = 0;i < this.linka.stops.size();i++){
+                System.out.println(this.linka.stops.get(i).name);
+                zastavky = zastavky + (this.linka.stops.get(i).name) + "\n";     
+            }
+        control.poriadok.setText(zastavky);
+        bus.setFill(Color.RED);
+    }
 
     @Override
     public String toString() {
@@ -154,17 +166,19 @@ public class Vehicle implements Drawable, TimeUpdate{
 
     private void setGui() {
         gui = new ArrayList<>( );
-        Circle circle = new Circle(position.getX(), position.getY(), 8, Color.BLUE);
+        Circle bus = new Circle(position.getX(), position.getY(), 8, Color.BLUE);
         
-        circle.setOnMouseClicked(new EventHandler<MouseEvent>()
+        bus.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
             public void handle(MouseEvent t) {
                 System.out.println("Whadup");
-                circle.setFill(Color.RED);
+                highLight(bus);
             }
         });
-        gui.add(circle);
+        //bus.toFront();
+        gui.add(bus);
+
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
@@ -39,6 +40,8 @@ public class MainController implements Initializable {
     private TextField timeScale;
     @FXML
     private TextField clock;
+    @FXML
+    public TextArea poriadok;
     
     @FXML
     private void onTimeScaleChange(){
@@ -109,8 +112,6 @@ public class MainController implements Initializable {
                
                if (returner == 2){
                    System.out.print("Zastavka............................");
-                   //updates.remove(update);
-                   //try {
                    Platform.runLater(new Runnable() {              
                     @Override
                     public void run() {
@@ -118,11 +119,6 @@ public class MainController implements Initializable {
                     }
                     });
                        System.out.println("Stojim:\n \n \n ");
-                       //Thread.sleep(5000);
-                   //} catch (InterruptedException ex) {
-                   //    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-                   //}
-                   //updates.add(update);
                }
                
                if (returner == -1){
