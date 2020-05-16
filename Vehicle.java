@@ -33,7 +33,9 @@ public class Vehicle implements Drawable, TimeUpdate{
     private double speed = 0;
     private double distance = 0;
     private double id = 0;
-    private boolean done = false;  
+    private boolean done = false;
+    private boolean zastavka = false;
+    private double cakanie = 0;
     private Path path;
     @JsonIgnore
     private List<Shape> gui;
@@ -48,6 +50,7 @@ public class Vehicle implements Drawable, TimeUpdate{
         this.speed = speed;
         this.path = path;
         this.done = false;
+        this.zastavka = false;
         setGui();
       
     }
@@ -93,25 +96,44 @@ public class Vehicle implements Drawable, TimeUpdate{
         }
         
 
-        distance += speed;
-        System.out.println(distance);
-        System.out.println(path.getPathSize());
-
+          
+       // moveGui(coords);
+       // position = coords;
         
-        Coordinate coords = path.getCoordinateByDistance(distance);
-        moveGui(coords);
-        position = coords;
-        
-        for(Integer i = 0;i < zastavky.size();i++){
+       if(this.zastavka == false){
+            for(Integer i = 0;i < zastavky.size();i++){
             System.out.println("Porovnavam " + floor(this.position.getX())+ " plus " + floor(this.position.getY())+ " VS " + zastavky.get(i).getX()+ " a " + zastavky.get(i).getY());
             if((floor(this.position.getX()) == zastavky.get(i).getX() && floor(this.position.getY()) == zastavky.get(i).getY())
                 || (ceil(this.position.getX()) == zastavky.get(i).getX() && ceil(this.position.getY()) == zastavky.get(i).getY())
                     || (floor(this.position.getX()) == zastavky.get(i).getX() && ceil(this.position.getY()) == zastavky.get(i).getY())
                     || (ceil(this.position.getX()) == zastavky.get(i).getX() && floor(this.position.getY()) == zastavky.get(i).getY())){
                 System.out.println("ZASTAVKA YEAH" + " " + " " + "");
+                this.zastavka = true;
                 return 2;
             }
         }
+       }
+       
+        
+        if(this.zastavka == false){
+            distance += speed;
+        Coordinate coords = path.getCoordinateByDistance(distance); 
+            moveGui(coords);
+            position = coords;
+        }
+        else{
+            System.out.println("Cakam"+"");
+            cakanie++;
+            if(cakanie > 4){
+                this.zastavka = false;
+                distance += speed;
+        Coordinate coords = path.getCoordinateByDistance(distance); 
+                moveGui(coords);
+                position = coords;
+                cakanie = 0;
+            }
+        }
+        
         
         return 0;
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
