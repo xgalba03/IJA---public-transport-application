@@ -99,10 +99,15 @@ public class Projekt extends Application {
         line.stops.add(new Stop("Trefejova",new Coordinate(300,300)));
         line.stops.add(new Stop("Južná",new Coordinate(200,400)));
         line.stops.add(new Stop("Hlavná",new Coordinate(300,500)));
-        line.vehicles.add(new Vehicle(
-            coordinates.get(1), 
-            1, 
-            new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c,line.stops.get(3).c,line.stops.get(4).c)),1,line,controller));
+        Path path = new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c,line.stops.get(3).c,line.stops.get(4).c));
+        for(Integer i =0;i<11;i++){
+            double medzera = (path.getPathSize()/10);
+            double distance = (medzera*i);
+            Coordinate start = path.getCoordinateByDistance(medzera*i);
+            System.out.print("Path size:"+medzera+"Start:"+start);
+            line.vehicles.add(new Vehicle(start,1,path,1,line,controller,distance));
+        }
+        
         
         Street ulica8 = new Street("",  new Coordinate(100, 300), new Coordinate(300, 150), 9);
         Street ulica9 = new Street("",  new Coordinate(300, 150), new Coordinate(400,400), 10);
@@ -118,7 +123,7 @@ public class Projekt extends Application {
         line2.vehicles.add(new Vehicle(
             coordinates.get(0), 
             1, 
-            new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c)),1,line2,controller));
+            new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c)),1,line2,controller,0));
         
         //Data data = new Data(coordinates, vehicle);
         List<MyLine> lines = new ArrayList<>();

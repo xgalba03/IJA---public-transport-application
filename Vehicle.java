@@ -31,7 +31,7 @@ import javafx.scene.shape.Shape;
 public class Vehicle implements Drawable, TimeUpdate{
     private Coordinate position;
     private double speed = 0;
-    private double distance = 0;
+    private double distance;
     private double id = 0;
     private boolean done = false;
     private boolean zastavka = false;
@@ -46,7 +46,7 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     private Vehicle(){}
     
-    public Vehicle(Coordinate position, double speed, Path path, double ID, MyLine linka, MainController control) {
+    public Vehicle(Coordinate position, double speed, Path path, double ID, MyLine linka, MainController control, double distance) {
         this.id = ID;
         this.position = position;
         this.speed = speed;
@@ -55,6 +55,7 @@ public class Vehicle implements Drawable, TimeUpdate{
         this.zastavka = false;
         this.linka = linka;
         this.control = control;
+        this.distance = distance;
         setGui();
       
     }
@@ -92,14 +93,14 @@ public class Vehicle implements Drawable, TimeUpdate{
     @Override
     public Integer update(LocalTime time) {
         List<Coordinate> zastavky = this.path.getPath();
-        if(distance >= path.getPathSize()){
-            //distance = 0;
-            //this.position = position;
+        if(this.distance >= path.getPathSize()){
+            this.distance = 0;
+            this.position = position;
             this.done = true;           
             return -1;  
         }
         
-        System.out.print("Vzdialenost:" + distance+ "\n");
+        System.out.print("Vzdialenost:" + this.distance+ "\n");
         
 
           
@@ -119,8 +120,8 @@ public class Vehicle implements Drawable, TimeUpdate{
         }
   
         if(this.zastavka == false){
-            distance += speed;
-            Coordinate coords = path.getCoordinateByDistance(distance); 
+            this.distance += speed;
+            Coordinate coords = path.getCoordinateByDistance(this.distance); 
             moveGui(coords);
             position = coords;
         }
@@ -129,8 +130,8 @@ public class Vehicle implements Drawable, TimeUpdate{
             cakanie++;
             if(cakanie > 4){
                 this.zastavka = false;
-                distance += speed;
-                Coordinate coords = path.getCoordinateByDistance(distance); 
+                this.distance += speed;
+                Coordinate coords = path.getCoordinateByDistance(this.distance); 
                 moveGui(coords);
                 position = coords;
                 cakanie = 0;

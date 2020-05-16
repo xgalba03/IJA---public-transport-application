@@ -121,7 +121,7 @@ public class MainController implements Initializable {
                        System.out.println("Stojim:\n \n \n ");
                }
                
-               if (returner == -1){
+              /* if (returner == -1){
                 System.out.println("END:\n \n \n ");
                 updates.remove(update);
                 Platform.runLater(new Runnable() {              
@@ -130,10 +130,8 @@ public class MainController implements Initializable {
                         removeElement();
                     }
                 });
-                
-                 
                 break;
-               }
+               }*/
             } 
         }
         }, 0, (long )(1000 / scale));
