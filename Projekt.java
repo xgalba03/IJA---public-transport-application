@@ -39,7 +39,7 @@ public class Projekt extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));
         BorderPane root = loader.load();
         
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root,800,600);
         
         primaryStage.setScene(scene);
         primaryStage.show();
