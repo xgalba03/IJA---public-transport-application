@@ -164,29 +164,45 @@ public class Projekt extends Application {
         controller.setElements(elements_two);
         controller.startTime(1);
         
+        List<Street> list_of_streets = new ArrayList<>();
         
-       /* MainController controller2 = controller;
-        //controller2.setElements(elements_two);
+        list_of_streets.add(ulica4);
+        list_of_streets.add(ulica5);
+        list_of_streets.add(ulica6);
+        list_of_streets.add(ulica7);
+        list_of_streets.add(ulica8);
+        list_of_streets.add(ulica9);
+        list_of_streets.add(ulica10);
+        list_of_streets.add(ulica11);
         
-        new java.util.Timer().schedule( 
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        controller2.startTime(1);
-                    }
-                }, 
-                5000 
-        );*/
+        List<Stop> list_of_stops = new ArrayList<>();
+        
+        list_of_stops.add(new Stop("Technické múzeum",new Coordinate(100,100)));
+        list_of_stops.add(new Stop("Skácelova",new Coordinate(200,200)));
+        list_of_stops.add(new Stop("Trefejova",new Coordinate(300,300)));
+        list_of_stops.add(new Stop("Južná",new Coordinate(200,400)));
+        list_of_stops.add(new Stop("Hlavná",new Coordinate(300,500)));
+        list_of_stops.add(new Stop("Česká",new Coordinate(100,300)));
+        list_of_stops.add(new Stop("Rybkova",new Coordinate(300,150)));
+        list_of_stops.add(new Stop("Kraví hora",new Coordinate(400,400)));
+        list_of_stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
+        list_of_stops.add(new Stop("Tábor",new Coordinate(100,200)));
         
         
-        //Data data = new Data(lines);
+        Data data = new Data(list_of_streets,list_of_stops);
         
         
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory); 
+        mapper.findAndRegisterModules();
+        
         //Vehicle vehicle1 = mapper.readValue(new File("test.yaml"), Vehicle.class);
         //System.out.println(vehicle1.getPosition());
-        //mapper.writeValue(new File("test.yaml"), data);
+        mapper.writeValue(new File("test.yaml"), data);
+        
+        List<Street> street_list = Arrays.asList(mapper.readValue(new File("test.yaml"), Street[].class));
+        street_list.forEach(System.out::println);
+
     } 
 
     /**

@@ -5,6 +5,9 @@
  */
 package projekt;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.Arrays;
 import java.util.List;
 import javafx.scene.paint.Color;
@@ -17,28 +20,24 @@ import javafx.scene.text.Text;
  *
  * @author Damian
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Stop implements Drawable{
     
     protected String name;
     protected Coordinate c;
-    protected MyLine s;
     protected String stav;
     private double id;
     private boolean bool;
+    @JsonIgnore
+    private List<Shape> gui;
     
-    public Stop(){}
+    private Stop(){}
     
     public Stop(String name,Coordinate c){
         this.name = name;
         this.c = c;
-        this.s = null;
     }
     
-    public Stop(String name,Coordinate c,MyLine s){
-        this.name = name;
-        this.c = c;
-        this.s = s;
-    }
     @Override
     public List<Shape> getGui(){
         return Arrays.asList(
@@ -55,5 +54,17 @@ public class Stop implements Drawable{
     @Override
     public boolean getBool(){
         return true;
+    } 
+    
+    public String getName(){
+        return this.name;
+    } 
+    
+    public Coordinate getCoordinate(){
+        return this.c;
+    }
+    
+    public String getStav(){
+        return this.stav;
     } 
 }

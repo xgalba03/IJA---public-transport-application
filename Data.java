@@ -13,9 +13,8 @@ import java.util.List;
  * @author localadmin
  */
 public class Data {
-    private List<Coordinate> coordinates;
-    private Vehicle vehicle;
-    private List<MyLine> lines;
+    public List<Street> streets = new ArrayList<>();
+    public List<Stop> stops = new ArrayList<>();
     
     private Data(){
     }
@@ -25,26 +24,24 @@ public class Data {
         this.vehicle = vehicle;
     }*/
     
-    public Data(List<MyLine> line){
-        this.lines = line;
+    public Data(List<Street> streets,List<Stop> stops){
+        this.streets = streets;
+        this.stops = stops;
     }
 
 
-    public List<Coordinate> getCoordinates() {
-        return coordinates;
+    public List<Street> getStreets() {
+        return streets;
     }
     
-    public List<MyLine> getLines() {
-        return lines;
+    public List<Stop> getStops() {
+        return stops;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
 
     @Override
     public String toString() {
-        return "Data{" + "coordinates=" + coordinates + ", vehicle=" + vehicle + '}';
+        return "Data{" + "coordinates="  + ", vehicle=" + '}';
     }
     
     

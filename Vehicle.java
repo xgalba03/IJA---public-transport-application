@@ -21,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 
 
 /**
@@ -194,6 +195,7 @@ public class Vehicle implements Drawable, TimeUpdate{
         });
         //bus.toFront();
         gui.add(bus);
+        gui.add( new Text(position.getX(), position.getY(), "10"));
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

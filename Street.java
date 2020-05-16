@@ -5,7 +5,9 @@
  */
 package projekt;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +20,7 @@ import javafx.scene.text.Text;
  *
  * @author localadmin
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Street implements Drawable{
     private Coordinate start;
     private Coordinate stop;
@@ -26,6 +29,8 @@ public class Street implements Drawable{
     private boolean bool;
     @JsonIgnore
     private List<Shape> gui;
+    
+    private Street(){}
     public Street(String name, Coordinate start, Coordinate stop, double id){
         this.name = name;
         this.start = start;
@@ -65,5 +70,17 @@ public class Street implements Drawable{
     @Override
     public boolean getBool(){
         return true;
+    } 
+    
+    public Coordinate getStart(){
+        return this.start;
+    } 
+    
+    public Coordinate getStop(){
+        return this.stop;
+    } 
+    
+    public String getName(){
+        return this.name;
     } 
 }
