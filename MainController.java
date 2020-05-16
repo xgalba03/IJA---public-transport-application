@@ -115,35 +115,19 @@ public class MainController implements Initializable {
         timer.scheduleAtFixedRate(new TimerTask(){
         @Override
         public void run(){
-            time = time.plusSeconds(1);
-            for(TimeUpdate update : updates){
-               System.out.print("Update " + update + "čas je:" + time);
-               Integer returner = update.update(time);
-               writeTime();
-               
-               if (returner == 2){
-                   System.out.print("Zastavka............................");
+             
                    Platform.runLater(new Runnable() {              
                     @Override
                     public void run() {
-                        System.out.println("Stojim:\n \n \n ");
+                    time = time.plusSeconds(1);
+                    for(TimeUpdate update : updates){
+                       System.out.print("Update " + update + "čas je:" + time);
+                       Integer returner = update.update(time);
+                       writeTime();
+                    }         
                     }
                     });
-                       System.out.println("Stojim:\n \n \n ");
-               }
-               
-              /* if (returner == -1){
-                System.out.println("END:\n \n \n ");
-                updates.remove(update);
-                Platform.runLater(new Runnable() {              
-                    @Override
-                    public void run() {
-                        removeElement();
-                    }
-                });
-                break;
-               }*/
-            } 
+             
         }
         }, 0, (long )(1000 / scale));
     }

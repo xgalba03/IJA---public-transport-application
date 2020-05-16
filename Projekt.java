@@ -100,7 +100,7 @@ public class Projekt extends Application {
         line.stops.add(new Stop("Južná",new Coordinate(200,400)));
         line.stops.add(new Stop("Hlavná",new Coordinate(300,500)));
         Path path = new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c,line.stops.get(3).c,line.stops.get(4).c));
-        for(Integer i =0;i<11;i++){
+        for(Integer i =0; i < 11; i++){
             double medzera = (path.getPathSize()/10);
             double distance = (medzera*i);
             Coordinate start = path.getCoordinateByDistance(medzera*i);
@@ -120,10 +120,14 @@ public class Projekt extends Application {
         line2.stops.add(new Stop("Kraví hora",new Coordinate(400,400)));
         line2.stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
         line2.stops.add(new Stop("Tábor",new Coordinate(100,200)));
-        line2.vehicles.add(new Vehicle(
-            coordinates.get(0), 
-            1, 
-            new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c)),1,line2,controller,0));
+        Path path2 = new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c));
+        for(Integer i =0; i < 11; i++){
+            double medzera = (path2.getPathSize()/10);
+            double distance = (medzera*i);
+            Coordinate start = path2.getCoordinateByDistance(medzera*i);
+            System.out.print("Path size:"+medzera+"Start:"+start);
+            line2.vehicles.add(new Vehicle(start,1,path2,1,line,controller,distance));
+        }
         
         //Data data = new Data(coordinates, vehicle);
         List<MyLine> lines = new ArrayList<>();
