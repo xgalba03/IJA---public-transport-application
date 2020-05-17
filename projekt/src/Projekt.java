@@ -120,7 +120,7 @@ public class Projekt extends Application {
         
         
         
-        MyLine line2 = new MyLine("10");
+        MyLine line2 = new MyLine("20");
         line2.stops.add(new Stop("Ceska",new Coordinate(100,300)));
         line2.stops.add(new Stop("Rybkova",new Coordinate(300,150)));
         line2.stops.add(new Stop("Kravi hora",new Coordinate(400,400)));
@@ -129,7 +129,7 @@ public class Projekt extends Application {
         Path path2 = new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c));
         
         
-        MyLine line3 = new MyLine("10");
+        MyLine line3 = new MyLine("30");
         line3.stops.add(new Stop("Technicke muzeum",new Coordinate(100,100)));
         line3.stops.add(new Stop("Tabor",new Coordinate(100,200)));
         line3.stops.add(new Stop("Ceska",new Coordinate(100,300)));
