@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 /**
@@ -120,7 +121,7 @@ public class Projekt extends Application {
         
         
         
-        MyLine line2 = new MyLine("10");
+        MyLine line2 = new MyLine("20");
         line2.stops.add(new Stop("Česká",new Coordinate(100,300)));
         line2.stops.add(new Stop("Rybkova",new Coordinate(300,150)));
         line2.stops.add(new Stop("Kraví hora",new Coordinate(400,400)));
@@ -129,7 +130,7 @@ public class Projekt extends Application {
         Path path2 = new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c));
         
         
-        MyLine line3 = new MyLine("10");
+        MyLine line3 = new MyLine("30");
         line3.stops.add(new Stop("Technické múzeum",new Coordinate(100,100)));
         line3.stops.add(new Stop("Tábor",new Coordinate(100,200)));
         line3.stops.add(new Stop("Česká",new Coordinate(100,300)));
@@ -186,15 +187,7 @@ public class Projekt extends Application {
         for (int i = 0; i < line.stops.size(); i++) {
             elements_two.add(line.stops.get(i));
         }*/
-        for (int i = 0; i < line.vehicles.size(); i++) {
-            elements_two.add(line.vehicles.get(i));
-        }
-        for (int i = 0; i < line2.vehicles.size(); i++) {
-            elements_two.add(line2.vehicles.get(i));
-        }
-        for (int i = 0; i < line3.vehicles.size(); i++) {
-            elements_two.add(line3.vehicles.get(i));
-        }
+
         
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory); 
@@ -217,6 +210,16 @@ public class Projekt extends Application {
                 read_data.lines.get(i).vehicles.get(j).setGui();
                 elements_two.add(read_data.lines.get(i).vehicles.get(j));
             }
+        }
+        
+        for (int i = 0; i < line.vehicles.size(); i++) {
+            elements_two.add(line.vehicles.get(i));
+        }
+        for (int i = 0; i < line2.vehicles.size(); i++) {
+            elements_two.add(line2.vehicles.get(i));
+        }
+        for (int i = 0; i < line3.vehicles.size(); i++) {
+            elements_two.add(line3.vehicles.get(i));
         }
 
         //elements_two.add(vehicle2);

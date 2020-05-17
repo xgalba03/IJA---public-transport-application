@@ -239,19 +239,49 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     @JsonIgnore
     public void setGui() {
+        Color farba = Color.BLUEVIOLET;
         gui = new ArrayList<>( );
-        Circle bus = new Circle(position.getX(), position.getY(), 8, Color.BLUE);
+        if(this.linka.name == "10"){
+            farba = Color.BLUE;
+            Circle bus = new Circle(position.getX(), position.getY(), 8, farba);
+            bus.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent t) {
+                    System.out.println("Whadup");
+                    highLight(bus);
+                }
+            });
+            gui.add(bus);     
+        }
+        else if(this.linka.name == "20"){
+            farba = Color.RED;
+            Circle bus = new Circle(position.getX(), position.getY(), 8, farba);
+            bus.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent t) {
+                    System.out.println("Whadup");
+                    highLight(bus);
+                }
+            });
+            gui.add(bus); 
+        }
+        else if(this.linka.name == "30"){
+            farba = Color.GREEN;
+            Circle bus = new Circle(position.getX(), position.getY(), 8, farba);
+            bus.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent t) {
+                    System.out.println("Whadup");
+                    highLight(bus);
+                }
+            });
+            gui.add(bus); 
+        }
         
-        bus.setOnMouseClicked(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent t) {
-                System.out.println("Whadup");
-                highLight(bus);
-            }
-        });
-        //bus.toFront();
-        gui.add(bus);
+        
         //gui.add( new Text(position.getX(), position.getY(), "10"));
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
