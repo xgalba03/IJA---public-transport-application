@@ -39,6 +39,8 @@ public class MainController implements Initializable {
     @FXML
     private TextField timeScale;
     @FXML
+    private TextField setTime;
+    @FXML
     private TextField clock;
     @FXML
     public TextArea poriadok;
@@ -59,6 +61,18 @@ public class MainController implements Initializable {
             alert.show();
         }  
     }
+    
+    @FXML
+    private void onSetTime(){
+        String timestring = (setTime.getText());
+        try{
+            time = LocalTime.parse(timestring);
+        } catch(Exception  e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Zadajte Äas vo formÃ¡te hh:mm:ss");
+            alert.show();
+        }  
+    }
+
     
     @FXML
     public void removeHighlight(){

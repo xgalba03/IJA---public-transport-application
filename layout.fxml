@@ -16,7 +16,10 @@
          <content>
             <Group>
                <children>
-                  <Pane fx:id="content" prefHeight="1000.0" prefWidth="1000.0" />
+                  <Pane fx:id="content" prefHeight="1000.0" prefWidth="1000.0">
+                     <children>
+                        <TextField fx:id="clock" layoutX="215.0" layoutY="14.0" />
+                     </children></Pane>
                </children>
             </Group>
          </content>
@@ -27,9 +30,10 @@
          <children>
             <TextField fx:id="timeScale" layoutX="26.0" layoutY="35.0" text="1" />
             <Button layoutX="66.0" layoutY="68.0" mnemonicParsing="false" onAction="#onTimeScaleChange" text="Set speed" />
-            <TextField fx:id="clock" layoutX="26.0" layoutY="158.0" />
             <TextArea fx:id="poriadok" layoutX="32.0" layoutY="192.0" prefHeight="185.0" prefWidth="137.0" />
-            <Label layoutX="43.0" layoutY="14.0" prefHeight="17.0" prefWidth="124.0" text="Set speed from 0 to 5" />
+            <Label layoutX="43.0" layoutY="14.0" prefHeight="17.0" prefWidth="124.0" text="Set speed from 0 to 20" />
+            <Button layoutX="74.0" layoutY="137.0" mnemonicParsing="false" onAction="#onSetTime" text="Set Time" />
+            <TextField fx:id="setTime" layoutX="26.0" layoutY="102.0" text="1" />
          </children></AnchorPane>
    </right>
 </BorderPane>
