@@ -203,7 +203,7 @@ public class Projekt extends Application {
         //mapper.writeValue(new File("test.yaml"), data);
         
         
-        Data read_data = mapper.readValue(getClass().getResource("/test.yaml"), Data.class);
+        Data read_data = mapper.readValue(getClass().getResource("/map_lines.yaml"), Data.class);
         
         for (int i = 0; i < read_data.streets.size(); i++) {
             read_data.streets.get(i).setGui();
