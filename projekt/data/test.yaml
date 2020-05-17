@@ -23,7 +23,7 @@ streets:
   stop:
     &9 x: 200.0
     y: 400.0
-  name: "Stefaniková"
+  name: "Stefanikova"
   id: 7.0
   bool: true
 - &10 start:
@@ -198,7 +198,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 2
     linka: *49
     path: *52
   - &64 position:
@@ -209,7 +209,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 2
     linka: *49
     path: *52
   - &66 position:
@@ -220,7 +220,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 3
     linka: *49
     path: *52
   - &68 position:
@@ -231,7 +231,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 3
     linka: *49
     path: *52
   - &70 position:
@@ -242,7 +242,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 3
     linka: *49
     path: *52
   - &72 position:
@@ -253,7 +253,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 4
     linka: *49
     path: *52
   - &74 position:
@@ -264,7 +264,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 4
     linka: *49
     path: *52
   stops:
@@ -347,7 +347,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 2
     linka: *81
     path: *84
   - &96 position:
@@ -358,7 +358,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 2
     linka: *81
     path: *84
   - &98 position:
@@ -369,7 +369,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 3
     linka: *81
     path: *84
   - &100 position:
@@ -380,7 +380,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 4
     linka: *81
     path: *84
   - &102 position:
@@ -391,7 +391,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 4
     linka: *81
     path: *84
   - &104 position:
@@ -402,7 +402,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 4
     linka: *81
     path: *84
   - &106 position:
@@ -413,7 +413,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 4
     linka: *81
     path: *84
   stops:
@@ -482,7 +482,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 2
     linka: *113
     path: *116
   - &128 position:
@@ -493,7 +493,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 3
     linka: *113
     path: *116
   - &130 position:
@@ -504,7 +504,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 3
     linka: *113
     path: *116
   - &132 position:
@@ -515,7 +515,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 4
     linka: *113
     path: *116
   - &134 position:
@@ -526,7 +526,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 5
     linka: *113
     path: *116
   - &136 position:
@@ -537,7 +537,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 6
     linka: *113
     path: *116
   - &138 position:
@@ -548,7 +548,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 6
     linka: *113
     path: *116
   - &140 position:
@@ -559,7 +559,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 7
     linka: *113
     path: *116
   - &142 position:
@@ -570,7 +570,7 @@ lines:
     id: 1.0
     zastavka: false
     cakanie: 0.0
-    current: 1
+    current: 7
     linka: *113
     path: *116
   stops:

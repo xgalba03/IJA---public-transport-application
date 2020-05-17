@@ -43,5 +43,8 @@ public class MyLine {
         return this.stops;
     } 
     
+    public String getname(){
+        return this.name;
+    } 
     
 }
