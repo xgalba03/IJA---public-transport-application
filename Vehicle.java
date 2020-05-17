@@ -38,6 +38,7 @@ public class Vehicle implements Drawable, TimeUpdate{
     private boolean done = false;
     private boolean zastavka = false;
     private double cakanie = 0;
+    private Integer current;
     private MyLine linka;
     private Path path;
     private MainController control;
@@ -58,6 +59,7 @@ public class Vehicle implements Drawable, TimeUpdate{
         this.linka = linka;
         this.control = control;
         this.distance = distance;
+        this.current = 1;
         setGui();
       
     }
@@ -98,7 +100,8 @@ public class Vehicle implements Drawable, TimeUpdate{
         if(this.distance >= path.getPathSize()){
             this.distance = 0;
             this.position = position;
-            this.done = true;           
+            this.done = true;    
+            this.current = 0;
             return -1;  
         }
         
@@ -110,12 +113,13 @@ public class Vehicle implements Drawable, TimeUpdate{
        // position = coords;
         
         if(this.zastavka == false){
-            for(Integer i = 0;i < zastavky.size();i++){
+            for(Integer i = current;i < zastavky.size();i++){
                 System.out.println("Porovnavam " + floor(this.position.getX())+ " plus " + floor(this.position.getY())+ " VS " + zastavky.get(i).getX()+ " a " + zastavky.get(i).getY());
                 if(((floor(this.position.getX()) == zastavky.get(i).getX()) || (ceil(this.position.getX()) == zastavky.get(i).getX()))
                     && ((floor(this.position.getY()) == zastavky.get(i).getY()) || (ceil(this.position.getY()) == zastavky.get(i).getY()))){
                     System.out.println("ZASTAVKA YEAH" + " " + " " + "");
                     this.zastavka = true;
+                    this.current = i+1;
                     return 2;
                 }
             }
@@ -152,6 +156,7 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     private void highLight(Shape bus){
         //List<Coordinate> zastavky = this.path.getPath();
+        control.removeHighlight();
         System.out.println("Highlighting");
         String zastavky = "";
         for(Integer i = 0;i < this.linka.stops.size();i++){

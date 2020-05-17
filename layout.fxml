@@ -29,7 +29,6 @@
             <Button layoutX="66.0" layoutY="68.0" mnemonicParsing="false" onAction="#onTimeScaleChange" text="Set speed" />
             <TextField fx:id="clock" layoutX="26.0" layoutY="158.0" />
             <TextArea fx:id="poriadok" layoutX="32.0" layoutY="192.0" prefHeight="185.0" prefWidth="137.0" />
-            <Button layoutX="52.0" layoutY="121.0" mnemonicParsing="false" onAction="#removeHighlight" text="Reset highlight" />
             <Label layoutX="43.0" layoutY="14.0" prefHeight="17.0" prefWidth="124.0" text="Set speed from 0 to 5" />
          </children></AnchorPane>
    </right>

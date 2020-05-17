@@ -61,7 +61,7 @@ public class MainController implements Initializable {
     }
     
     @FXML
-    private void removeHighlight(){
+    public void removeHighlight(){
         System.out.print("Removing highlights");
         for (Drawable drawable : elements){
             System.out.print("ID:" + drawable.getID()+ "" + "\n \n \n");
