@@ -134,7 +134,7 @@ public class Vehicle implements Drawable, TimeUpdate{
         List<Coordinate> zastavky = this.path.getPath();
         if(this.distance >= path.getPathSize()){
             this.distance = 0;
-            this.position = position;
+            //this.position = position;
             this.done = true;    
             this.current = 0;
             //Alert alert = new Alert(Alert.AlertType.ERROR, "Reset zastavky" + (this.linka.stops.get(current).name));

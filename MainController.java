@@ -72,6 +72,22 @@ public class MainController implements Initializable {
             alert.show();
         }  
     }
+    
+    @FXML
+    private void onZoomIn(){
+        double zoom = 1.1;
+        content.setScaleX(zoom * content.getScaleX());
+        content.setScaleY(zoom * content.getScaleY());
+        content.layout();
+    }
+    
+    @FXML
+    private void onZoomOut(){
+        double zoom = 0.9;
+        content.setScaleX(zoom * content.getScaleX());
+        content.setScaleY(zoom * content.getScaleY());
+        content.layout();
+    }
 
     
     @FXML
