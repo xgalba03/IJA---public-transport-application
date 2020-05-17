@@ -126,7 +126,7 @@ public class Projekt extends Application {
             double distance = (medzera*i);
             Coordinate start = path2.getCoordinateByDistance(medzera*i);
             System.out.print("Path size:"+medzera+"Start:"+start);
-            line2.vehicles.add(new Vehicle(start,1,path2,1,line2,controller,distance));
+            line2.vehicles.add(new Vehicle(start,1,path2,1,line,controller,distance));
         }
         
         //Data data = new Data(coordinates, vehicle);

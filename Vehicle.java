@@ -44,7 +44,6 @@ public class Vehicle implements Drawable, TimeUpdate{
     private MainController control;
     @JsonIgnore
     private List<Shape> gui;
-    private boolean setCurrent = false;
     
     
     
@@ -97,57 +96,30 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     @Override
     public Integer update(LocalTime time) {
-        
         List<Coordinate> zastavky = this.path.getPath();
         if(this.distance >= path.getPathSize()){
             this.distance = 0;
             this.position = position;
             this.done = true;    
             this.current = 0;
-            //Alert alert = new Alert(Alert.AlertType.ERROR, "Reset zastavky" + (this.linka.stops.get(current).name));
-            //alert.show()    ;
             return -1;  
         }
         
         System.out.print("Vzdialenost:" + this.distance+ "\n");
-        
-        
         
 
           
        // moveGui(coords);
        // position = coords;
         
-       System.out.print(current);
-            if(current == zastavky.size()){
-               this.current = 0;
-               //Alert alert = new Alert(Alert.AlertType.ERROR, "Reset zastavky" + (this.linka.stops.get(this.current).name));
-               //alert.show()    ;
-            }
-            
-        if(this.zastavka == false){       
-            for(Integer i = this.current;i < zastavky.size();i++){
+        if(this.zastavka == false){
+            for(Integer i = current;i < zastavky.size();i++){
                 System.out.println("Porovnavam " + floor(this.position.getX())+ " plus " + floor(this.position.getY())+ " VS " + zastavky.get(i).getX()+ " a " + zastavky.get(i).getY());
                 if(((floor(this.position.getX()) == zastavky.get(i).getX()) || (ceil(this.position.getX()) == zastavky.get(i).getX()))
                     && ((floor(this.position.getY()) == zastavky.get(i).getY()) || (ceil(this.position.getY()) == zastavky.get(i).getY()))){
-                       if(setCurrent = false){
-                           setCurrent = true;
-                           this.current = i+1;
-                       }
-                    System.out.println("ZASTAVKA YEAH" + "\n" + "\n" + "\n");
+                    System.out.println("ZASTAVKA YEAH" + " " + " " + "");
                     this.zastavka = true;
-                    
-                    this.current += 1;
-                    
-                    /*if(this.current == zastavky.size()){
-                       this.current = 0;
-                       //Alert alert = new Alert(Alert.AlertType.ERROR, "Reset zastavky" + (this.linka.stops.get(current).name));
-                       //alert.show()    ;
-                       System.out.println("MenÃ­m current na 0-------------------------------------------------------------------------");
-                       //i = 0;
-                     //  break;
-                    }*/
-                   
+                    this.current = i+1;
                     return 2;
                 }
             }
@@ -189,10 +161,8 @@ public class Vehicle implements Drawable, TimeUpdate{
         String zastavky = "";
         for(Integer i = 0;i < this.linka.stops.size();i++){
                 System.out.println(this.linka.stops.get(i).name);
-                zastavky = zastavky + (this.linka.stops.get(i).name) + "\n"; 
-                
+                zastavky = zastavky + (this.linka.stops.get(i).name) + "\n";     
             }
-        zastavky = zastavky + ("Nasledujuca zastavka:" + this.linka.stops.get(this.current).name + this.current);
         control.poriadok.setText(zastavky);
         //bus.setFill(Color.RED);
         
@@ -201,6 +171,10 @@ public class Vehicle implements Drawable, TimeUpdate{
                 Coordinate end = new Coordinate(this.path.path.get(i+1).getX(),this.path.path.get(i+1).getY());
                 double id = 99;
                 Street street = new Street("",start,end,id);
+                //Line line = new Line(this.path.path.get(i).getX(),this.path.path.get(i).getY(),this.path.path.get(i+1).getX(),this.path.path.get(i+1).getY()); 
+                //line.setStroke(Color.YELLOW);
+                //line.setStrokeWidth(2);
+                //gui.add(line);
                 this.control.content.getChildren().addAll(street.getGui());
                 control.elements.add(street);
                 System.out.println(street);
@@ -226,7 +200,7 @@ public class Vehicle implements Drawable, TimeUpdate{
         });
         //bus.toFront();
         gui.add(bus);
-        //gui.add( new Text(position.getX(), position.getY(), "10"));
+        gui.add( new Text(position.getX(), position.getY(), "10"));
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
