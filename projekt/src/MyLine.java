@@ -18,7 +18,7 @@ import java.util.List;
 public class MyLine {
     
     protected String name;
-    protected List<Vehicle> vehicles;
+    public List<Vehicle> vehicles;
     protected List<Stop> stops;
     
     public MyLine(){}

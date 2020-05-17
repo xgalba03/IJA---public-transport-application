@@ -49,7 +49,12 @@ public class Vehicle implements Drawable, TimeUpdate{
     @JsonIgnore
     private MainController control;
     private List<Shape> gui;
-    
+    @JsonIgnore
+    private LocalTime casPrichodu;
+    @JsonIgnore
+    private List<LocalTime> casyPrichodu = new ArrayList<>(); ; 
+    @JsonIgnore
+    List<Double> vzdialenosti = new ArrayList<>(); 
     
     
     public Vehicle(){}
@@ -109,7 +114,64 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     
     
+    public void setTimes(LocalTime time){
+        List<Coordinate> zastavky = this.path.getPath();
+        for(Integer i = 0; i<zastavky.size(); i++){       
+            casyPrichodu.add(LocalTime.now());
+        }
+        //Alert alert = new Alert(Alert.AlertType.ERROR, "Reset zastavky" + (this.linka.stops.get(current).name));
+        // alert.show()    ;
         
+        double vzdialenost = 0;
+        for(Integer i = 0; i<zastavky.size()-1; i++){       
+            vzdialenost = vzdialenost + path.getDistanceBetweenCoordinates(zastavky.get(i), zastavky.get(i+1));
+            vzdialenosti.add(vzdialenost);
+        }
+        for(Integer i =0; i < vzdialenosti.size(); i++){
+            if(vzdialenosti.get(i) > distance){
+                current = i+1; 
+                double prichod = path.getDistanceBetweenCoordinates(position, zastavky.get(current));
+                long l = (new Double(prichod)).longValue();
+                casPrichodu =  time.plusSeconds(l+5);
+                break;
+            }
+        }
+        boolean cycle = true;
+        while(cycle){
+            Integer i = current;
+            Integer count = 0;
+            double prichod = path.getDistanceBetweenCoordinates(zastavky.get(current - 1), position);
+            long l = 0;
+            for(Integer j = i-1; j>=0;j--){     
+                l = (new Double(prichod)).longValue();
+                casPrichodu =  time.minusSeconds(l+(5*count));
+                casyPrichodu.set(j,casPrichodu);
+                count = count + 1;
+                if(j == 0){
+                    break;
+                }
+                prichod = prichod + path.getDistanceBetweenCoordinates(zastavky.get(j - 1), zastavky.get(j)); 
+            }
+            l = 0;
+            count = 0;
+            prichod = path.getDistanceBetweenCoordinates(position, zastavky.get(current));
+            for(Integer j = current; j < zastavky.size(); j++){             
+                l = (new Double(prichod)).longValue();
+                casPrichodu =  time.plusSeconds(l+(5*count));
+                casyPrichodu.set(j,casPrichodu);
+                count = count + 1;
+                if(j +1 >= zastavky.size()){
+                    break;
+                }
+                prichod = prichod + path.getDistanceBetweenCoordinates(zastavky.get(j), zastavky.get(j + 1)); 
+            }
+            cycle = false;
+                    
+        }
+        for(Integer i = current; i<100; i++){
+            
+        }
+    }    
     
     
     @JsonIgnore
@@ -171,7 +233,15 @@ public class Vehicle implements Drawable, TimeUpdate{
                     this.zastavka = true;
                     
                     this.current += 1;
-
+                    double prichod = 0;
+                    
+                    if(i < zastavky.size()-1){
+                         prichod = path.getDistanceBetweenCoordinates(position, zastavky.get(current));
+                    }        
+                    //long prichodLong = long()prichod;
+                    long l = (new Double(prichod)).longValue();
+                    casPrichodu = LocalTime.parse(this.control.clock.getText());
+                    casPrichodu =  casPrichodu.plusSeconds(l+5);
                     return 2;
                 }
             }
@@ -209,9 +279,12 @@ public class Vehicle implements Drawable, TimeUpdate{
         String zastavky = "";
         for(Integer i = 0;i < this.linka.stops.size();i++){
                 System.out.println(this.linka.stops.get(i).name);
-                zastavky = zastavky + (this.linka.stops.get(i).name) + "\n";     
+                zastavky = zastavky + (this.linka.stops.get(i).name) + " - " + casyPrichodu.get(i)+ "\n";     
             }
-        zastavky = zastavky + ("Nasledujuca zastavka:" + this.linka.stops.get(this.current).name + this.current);
+        /*for(Integer i = 0;i < this.vzdialenosti.size();i++){
+                zastavky = zastavky  +(this.vzdialenosti.get(i)) + "\n";     
+            }*/
+        zastavky = zastavky + ("\n"+"Nasledujuca zastavka:" + this.linka.stops.get(this.current).name + "\n" + casPrichodu);
         control.poriadok.setText(zastavky);
         //bus.setFill(Color.RED);
         
@@ -239,19 +312,49 @@ public class Vehicle implements Drawable, TimeUpdate{
     
     @JsonIgnore
     public void setGui() {
+        Color farba = Color.BLUEVIOLET;
         gui = new ArrayList<>( );
-        Circle bus = new Circle(position.getX(), position.getY(), 8, Color.BLUE);
+        if(this.linka.name == "10"){
+            farba = Color.BLUE;
+            Circle bus = new Circle(position.getX(), position.getY(), 8, farba);
+            bus.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent t) {
+                    System.out.println("Whadup");
+                    highLight(bus);
+                }
+            });
+            gui.add(bus);     
+        }
+        else if(this.linka.name == "20"){
+            farba = Color.RED;
+            Circle bus = new Circle(position.getX(), position.getY(), 8, farba);
+            bus.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent t) {
+                    System.out.println("Whadup");
+                    highLight(bus);
+                }
+            });
+            gui.add(bus); 
+        }
+        else if(this.linka.name == "30"){
+            farba = Color.GREEN;
+            Circle bus = new Circle(position.getX(), position.getY(), 8, farba);
+            bus.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent t) {
+                    System.out.println("Whadup");
+                    highLight(bus);
+                }
+            });
+            gui.add(bus); 
+        }
         
-        bus.setOnMouseClicked(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent t) {
-                System.out.println("Whadup");
-                highLight(bus);
-            }
-        });
-        //bus.toFront();
-        gui.add(bus);
+        
         //gui.add( new Text(position.getX(), position.getY(), "10"));
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -35,15 +35,29 @@ public class MainController implements Initializable {
     List<Drawable> elements = new ArrayList<>();
     private LocalTime time = LocalTime.now();
     private List<TimeUpdate> updates = new ArrayList<>();
+    private List<MyLine> ulice = new ArrayList<>();
     
     @FXML
     private TextField timeScale;
     @FXML
     private TextField setTime;
     @FXML
-    private TextField clock;
+    public TextField clock;
     @FXML
     public TextArea poriadok;
+    
+    public void giveLines(List<MyLine> lines){
+        ulice = lines;
+        setTimes();
+    }
+    
+    public void setTimes(){
+        for(Integer i = 0;i<ulice.size();i++){
+            for(Integer j = 0; j < ulice.get(i).vehicles.size(); j++){
+                ulice.get(i).vehicles.get(j).setTimes(time);
+            }       
+        }
+    }
     
     @FXML
     private void onTimeScaleChange(){
@@ -67,6 +81,7 @@ public class MainController implements Initializable {
         String timestring = (setTime.getText());
         try{
             time = LocalTime.parse(timestring);
+            setTimes();
         } catch(Exception  e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Zadajte cas vo formate hh:mm:ss");
             alert.show();
@@ -151,7 +166,7 @@ public class MainController implements Initializable {
                     public void run() {
                     time = time.plusSeconds(1);
                     for(TimeUpdate update : updates){
-                       System.out.print("Update " + update + "cas je:" + time);
+                       System.out.print("Update " + update + "čas je:" + time);
                        Integer returner = update.update(time);
                        writeTime();
                     }         
