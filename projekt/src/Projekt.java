@@ -186,6 +186,7 @@ public class Projekt extends Application {
         for (int i = 0; i < line.stops.size(); i++) {
             elements_two.add(line.stops.get(i));
         }*/
+        /*
         for (int i = 0; i < line.vehicles.size(); i++) {
             elements_two.add(line.vehicles.get(i));
         }
@@ -195,7 +196,7 @@ public class Projekt extends Application {
         for (int i = 0; i < line3.vehicles.size(); i++) {
             elements_two.add(line3.vehicles.get(i));
         }
-        
+        */
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory); 
         mapper.findAndRegisterModules();
@@ -217,6 +218,15 @@ public class Projekt extends Application {
                 read_data.lines.get(i).vehicles.get(j).setGui();
                 elements_two.add(read_data.lines.get(i).vehicles.get(j));
             }
+        }
+        for (int i = 0; i < line.vehicles.size(); i++) {
+            elements_two.add(line.vehicles.get(i));
+        }
+        for (int i = 0; i < line2.vehicles.size(); i++) {
+            elements_two.add(line2.vehicles.get(i));
+        }
+        for (int i = 0; i < line3.vehicles.size(); i++) {
+            elements_two.add(line3.vehicles.get(i));
         }
 
         //elements_two.add(vehicle2);
