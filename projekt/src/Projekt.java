@@ -25,7 +25,6 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 /**
@@ -36,7 +35,7 @@ public class Projekt extends Application {
     private LocalTime time = LocalTime.now();
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));
         BorderPane root = loader.load();
         
@@ -59,8 +58,8 @@ public class Projekt extends Application {
         Street ulica3 = new Street("Test street2",  new Coordinate(100, 200), new Coordinate(500, 500), 5);
         
         Street ulica4 = new Street("Antoninska",   new Coordinate(100, 100), new Coordinate(200, 200), 5);
-        Street ulica5 = new Street("Mukačevova",   new Coordinate(200, 200), new Coordinate(300, 300), 6);
-        Street ulica6 = new Street("Štefániková",  new Coordinate(300, 300), new Coordinate(200, 400), 7);
+        Street ulica5 = new Street("Mukacevova",   new Coordinate(200, 200), new Coordinate(300, 300), 6);
+        Street ulica6 = new Street("Stefanikova",  new Coordinate(300, 300), new Coordinate(200, 400), 7);
         Street ulica7 = new Street("Roosveltova",  new Coordinate(200, 400), new Coordinate(300, 500), 8);
         
         Street ulica8 =  new Street("",  new Coordinate(100,300), new Coordinate(300,150), 9);
@@ -110,36 +109,36 @@ public class Projekt extends Application {
         //controller.startTime(1);
         
         MyLine line = new MyLine("10");
-        line.stops.add(new Stop("Technické múzeum",new Coordinate(100,100)));
-        line.stops.add(new Stop("Skácelova",new Coordinate(200,200)));
+        line.stops.add(new Stop("Technicke muzeum",new Coordinate(100,100)));
+        line.stops.add(new Stop("Skacelova",new Coordinate(200,200)));
         line.stops.add(new Stop("Trefejova",new Coordinate(300,300)));
-        line.stops.add(new Stop("Južná",new Coordinate(200,400)));
-        line.stops.add(new Stop("Hlavná",new Coordinate(300,500)));
+        line.stops.add(new Stop("Juzna",new Coordinate(200,400)));
+        line.stops.add(new Stop("Hlavna",new Coordinate(300,500)));
         Path path = new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c,line.stops.get(3).c,line.stops.get(4).c));
         
         
         
         
         
-        MyLine line2 = new MyLine("20");
-        line2.stops.add(new Stop("Česká",new Coordinate(100,300)));
+        MyLine line2 = new MyLine("10");
+        line2.stops.add(new Stop("Ceska",new Coordinate(100,300)));
         line2.stops.add(new Stop("Rybkova",new Coordinate(300,150)));
-        line2.stops.add(new Stop("Kraví hora",new Coordinate(400,400)));
-        line2.stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
-        line2.stops.add(new Stop("Tábor",new Coordinate(100,200)));
+        line2.stops.add(new Stop("Kravi hora",new Coordinate(400,400)));
+        line2.stops.add(new Stop("Silingrovo namesti",new Coordinate(400,500)));
+        line2.stops.add(new Stop("Tabor",new Coordinate(100,200)));
         Path path2 = new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c));
         
         
-        MyLine line3 = new MyLine("30");
-        line3.stops.add(new Stop("Technické múzeum",new Coordinate(100,100)));
-        line3.stops.add(new Stop("Tábor",new Coordinate(100,200)));
-        line3.stops.add(new Stop("Česká",new Coordinate(100,300)));
+        MyLine line3 = new MyLine("10");
+        line3.stops.add(new Stop("Technicke muzeum",new Coordinate(100,100)));
+        line3.stops.add(new Stop("Tabor",new Coordinate(100,200)));
+        line3.stops.add(new Stop("Ceska",new Coordinate(100,300)));
         line3.stops.add(new Stop("Semillaso",new Coordinate(100,500)));
-        line3.stops.add(new Stop("Hlavná",new Coordinate(300,500)));
-        line3.stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
+        line3.stops.add(new Stop("Hlavna",new Coordinate(300,500)));
+        line3.stops.add(new Stop("Silingrovo namesti",new Coordinate(400,500)));
         line3.stops.add(new Stop("Zbojnova",new Coordinate(500,300)));
         line3.stops.add(new Stop("Rybkova",new Coordinate(300,150)));
-        line3.stops.add(new Stop("Kolejní",new Coordinate(400,100)));
+        line3.stops.add(new Stop("Kolejni",new Coordinate(400,100)));
         Path path3 = new Path(Arrays.asList(line3.stops.get(0).c,line3.stops.get(1).c,line3.stops.get(2).c,line3.stops.get(3).c,line3.stops.get(4).c,
                 line3.stops.get(5).c,line3.stops.get(6).c,line3.stops.get(7).c,line3.stops.get(8).c));
         for(Integer i =0; i < 10; i++){
@@ -187,7 +186,15 @@ public class Projekt extends Application {
         for (int i = 0; i < line.stops.size(); i++) {
             elements_two.add(line.stops.get(i));
         }*/
-
+        for (int i = 0; i < line.vehicles.size(); i++) {
+            elements_two.add(line.vehicles.get(i));
+        }
+        for (int i = 0; i < line2.vehicles.size(); i++) {
+            elements_two.add(line2.vehicles.get(i));
+        }
+        for (int i = 0; i < line3.vehicles.size(); i++) {
+            elements_two.add(line3.vehicles.get(i));
+        }
         
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory); 
@@ -195,7 +202,7 @@ public class Projekt extends Application {
         //mapper.writeValue(new File("test.yaml"), data);
         
         
-        Data read_data = mapper.readValue(new File("test.yaml"), Data.class);
+        Data read_data = mapper.readValue(getClass().getResource("/test.yaml"), Data.class);
         
         for (int i = 0; i < read_data.streets.size(); i++) {
             read_data.streets.get(i).setGui();
@@ -210,16 +217,6 @@ public class Projekt extends Application {
                 read_data.lines.get(i).vehicles.get(j).setGui();
                 elements_two.add(read_data.lines.get(i).vehicles.get(j));
             }
-        }
-        
-        for (int i = 0; i < line.vehicles.size(); i++) {
-            elements_two.add(line.vehicles.get(i));
-        }
-        for (int i = 0; i < line2.vehicles.size(); i++) {
-            elements_two.add(line2.vehicles.get(i));
-        }
-        for (int i = 0; i < line3.vehicles.size(); i++) {
-            elements_two.add(line3.vehicles.get(i));
         }
 
         //elements_two.add(vehicle2);
@@ -247,16 +244,16 @@ public class Projekt extends Application {
         
         List<Stop> list_of_stops = new ArrayList<>();
         
-        list_of_stops.add(new Stop("Technické múzeum",new Coordinate(100,100)));
-        list_of_stops.add(new Stop("Skácelova",new Coordinate(200,200)));
+        list_of_stops.add(new Stop("Technicke muzeum",new Coordinate(100,100)));
+        list_of_stops.add(new Stop("Skacelova",new Coordinate(200,200)));
         list_of_stops.add(new Stop("Trefejova",new Coordinate(300,300)));
-        list_of_stops.add(new Stop("Južná",new Coordinate(200,400)));
-        list_of_stops.add(new Stop("Hlavná",new Coordinate(300,500)));
-        list_of_stops.add(new Stop("Česká",new Coordinate(100,300)));
+        list_of_stops.add(new Stop("Juzna",new Coordinate(200,400)));
+        list_of_stops.add(new Stop("Hlavna",new Coordinate(300,500)));
+        list_of_stops.add(new Stop("Ceska",new Coordinate(100,300)));
         list_of_stops.add(new Stop("Rybkova",new Coordinate(300,150)));
-        list_of_stops.add(new Stop("Kraví hora",new Coordinate(400,400)));
-        list_of_stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
-        list_of_stops.add(new Stop("Tábor",new Coordinate(100,200)));
+        list_of_stops.add(new Stop("Kravi hora",new Coordinate(400,400)));
+        list_of_stops.add(new Stop("Silingrovo namesti",new Coordinate(400,500)));
+        list_of_stops.add(new Stop("Tabor",new Coordinate(100,200)));
         
         List<MyLine> list_of_lines = new ArrayList<>();
         list_of_lines.add(line);
@@ -264,8 +261,7 @@ public class Projekt extends Application {
         list_of_lines.add(line3);
         
         controller.giveLines(list_of_lines);
-
-         
+        
         Data data = new Data(list_of_streets,list_of_lines);
         /*
         
