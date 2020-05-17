@@ -60,7 +60,7 @@ public class Stop implements Drawable{
         return this.name;
     } 
     
-    public Coordinate getCoordinate(){
+    public Coordinate getC(){
         return this.c;
     }
     

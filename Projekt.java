@@ -189,19 +189,19 @@ public class Projekt extends Application {
         list_of_stops.add(new Stop("Tábor",new Coordinate(100,200)));
         
         
+         
         Data data = new Data(list_of_streets,list_of_stops);
         
         
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory); 
         mapper.findAndRegisterModules();
-        
-        //Vehicle vehicle1 = mapper.readValue(new File("test.yaml"), Vehicle.class);
-        //System.out.println(vehicle1.getPosition());
         mapper.writeValue(new File("test.yaml"), data);
         
-        //List<Street> street_list = Arrays.asList(mapper.readValue(new File("test.yaml"), Street[].class));
-        //street_list.forEach(System.out::println);
+        Data read_data = mapper.readValue(new File("test.yaml"), Data.class);
+        for (int i = 0; i < read_data.stops.size(); i++) {
+            System.out.println("STOP: "+read_data.stops.get(i).name);
+        }
 
     } 
 
