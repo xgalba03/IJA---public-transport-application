@@ -32,14 +32,14 @@
       </AnchorPane>
    </top>
    <right>
-      <AnchorPane prefHeight="384.0" prefWidth="212.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="354.0" prefWidth="248.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="timeScale" layoutX="31.0" layoutY="23.0" text="1" />
-            <Button layoutX="74.0" layoutY="48.0" mnemonicParsing="false" onAction="#onTimeScaleChange" text="Set speed" />
+            <TextField fx:id="timeScale" layoutX="32.0" layoutY="23.0" text="1" />
+            <Button layoutX="72.0" layoutY="57.0" mnemonicParsing="false" onAction="#onTimeScaleChange" text="Set speed" />
             <Label layoutX="43.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="Set speed from 0 to 20" />
-            <Button layoutX="136.0" layoutY="101.0" mnemonicParsing="false" onAction="#onSetTime" text="Set Time" />
-            <TextField fx:id="setTime" layoutX="14.0" layoutY="101.0" prefHeight="25.0" prefWidth="112.0" text="1" />
-            <TextArea fx:id="poriadok" layoutX="6.0" layoutY="129.0" prefHeight="207.0" prefWidth="196.0" />
+            <Button layoutX="136.0" layoutY="95.0" mnemonicParsing="false" onAction="#onSetTime" text="Set Time" />
+            <TextField fx:id="setTime" layoutX="16.0" layoutY="95.0" prefHeight="25.0" prefWidth="112.0" text="hh:mm:ss" />
+            <TextArea fx:id="poriadok" layoutX="4.0" layoutY="129.0" prefHeight="207.0" prefWidth="198.0" />
          </children>
       </AnchorPane>
    </right>

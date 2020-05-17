@@ -273,7 +273,7 @@ public class Projekt extends Application {
             System.out.println("STOP: "+read_data.stops.get(i).name);
         }*/
        
-       mapper.writeValue(new File("test.yaml"), data);
+       //mapper.writeValue(new File("test.yaml"), data);
 
     } 
 
