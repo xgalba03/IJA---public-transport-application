@@ -35,7 +35,7 @@ public class Projekt extends Application {
     private LocalTime time = LocalTime.now();
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../data/layout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));
         BorderPane root = loader.load();
         
@@ -202,7 +202,7 @@ public class Projekt extends Application {
         //mapper.writeValue(new File("test.yaml"), data);
         
         
-        Data read_data = mapper.readValue(new File("../data/test.yaml"), Data.class);
+        Data read_data = mapper.readValue(getClass().getResource("/test.yaml"), Data.class);
         
         for (int i = 0; i < read_data.streets.size(); i++) {
             read_data.streets.get(i).setGui();
