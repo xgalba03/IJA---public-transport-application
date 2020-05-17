@@ -1,0 +1,621 @@
+streets:
+- &1 start:
+    &2 x: 100.0
+    y: 100.0
+  stop:
+    &3 x: 200.0
+    y: 200.0
+  name: "Antoninska"
+  id: 5.0
+  bool: true
+- &4 start:
+    &5 x: 200.0
+    y: 200.0
+  stop:
+    &6 x: 300.0
+    y: 300.0
+  name: "Mukacevova"
+  id: 6.0
+  bool: true
+- &7 start:
+    &8 x: 300.0
+    y: 300.0
+  stop:
+    &9 x: 200.0
+    y: 400.0
+  name: "Stefaniková"
+  id: 7.0
+  bool: true
+- &10 start:
+    &11 x: 200.0
+    y: 400.0
+  stop:
+    &12 x: 300.0
+    y: 500.0
+  name: "Roosveltova"
+  id: 8.0
+  bool: true
+- &13 start:
+    &14 x: 100.0
+    y: 300.0
+  stop:
+    &15 x: 300.0
+    y: 150.0
+  name: ""
+  id: 9.0
+  bool: true
+- &16 start:
+    &17 x: 300.0
+    y: 150.0
+  stop:
+    &18 x: 400.0
+    y: 400.0
+  name: ""
+  id: 10.0
+  bool: true
+- &19 start:
+    &20 x: 400.0
+    y: 400.0
+  stop:
+    &21 x: 400.0
+    y: 500.0
+  name: ""
+  id: 11.0
+  bool: true
+- &22 start:
+    &23 x: 400.0
+    y: 500.0
+  stop:
+    &24 x: 100.0
+    y: 200.0
+  name: ""
+  id: 12.0
+  bool: true
+- &25 start:
+    &26 x: 100.0
+    y: 100.0
+  stop:
+    &27 x: 100.0
+    y: 200.0
+  name: ""
+  id: 13.0
+  bool: true
+- &28 start:
+    &29 x: 100.0
+    y: 200.0
+  stop:
+    &30 x: 100.0
+    y: 300.0
+  name: ""
+  id: 14.0
+  bool: true
+- &31 start:
+    &32 x: 100.0
+    y: 300.0
+  stop:
+    &33 x: 100.0
+    y: 500.0
+  name: ""
+  id: 15.0
+  bool: true
+- &34 start:
+    &35 x: 100.0
+    y: 500.0
+  stop:
+    &36 x: 300.0
+    y: 500.0
+  name: ""
+  id: 16.0
+  bool: true
+- &37 start:
+    &38 x: 300.0
+    y: 500.0
+  stop:
+    &39 x: 400.0
+    y: 500.0
+  name: ""
+  id: 17.0
+  bool: true
+- &40 start:
+    &41 x: 400.0
+    y: 500.0
+  stop:
+    &42 x: 500.0
+    y: 300.0
+  name: ""
+  id: 18.0
+  bool: true
+- &43 start:
+    &44 x: 500.0
+    y: 300.0
+  stop:
+    &45 x: 300.0
+    y: 150.0
+  name: ""
+  id: 19.0
+  bool: true
+- &46 start:
+    &47 x: 300.0
+    y: 150.0
+  stop:
+    &48 x: 400.0
+    y: 100.0
+  name: ""
+  id: 20.0
+  bool: true
+lines:
+- &49 vehicles:
+  - &50 position:
+      &51 x: 100.0
+      y: 100.0
+    speed: 1.0
+    distance: 0.0
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path:
+      &52 path:
+      - &53 x: 100.0
+        y: 100.0
+      - &54 x: 200.0
+        y: 200.0
+      - &55 x: 300.0
+        y: 300.0
+      - &56 x: 200.0
+        y: 400.0
+      - &57 x: 300.0
+        y: 500.0
+      ulice: null
+  - &58 position:
+      &59 x: 140.0
+      y: 140.0
+    speed: 1.0
+    distance: 56.568542494923804
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  - &60 position:
+      &61 x: 180.0
+      y: 180.0
+    speed: 1.0
+    distance: 113.13708498984761
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  - &62 position:
+      &63 x: 220.0
+      y: 220.0
+    speed: 1.0
+    distance: 169.7056274847714
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  - &64 position:
+      &65 x: 260.0
+      y: 260.0
+    speed: 1.0
+    distance: 226.27416997969522
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  - &66 position:
+      &67 x: 300.0
+      y: 300.0
+    speed: 1.0
+    distance: 282.842712474619
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  - &68 position:
+      &69 x: 260.0
+      y: 340.0
+    speed: 1.0
+    distance: 339.4112549695428
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  - &70 position:
+      &71 x: 220.0
+      y: 380.0
+    speed: 1.0
+    distance: 395.9797974644666
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  - &72 position:
+      &73 x: 220.0
+      y: 420.0
+    speed: 1.0
+    distance: 452.54833995939043
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  - &74 position:
+      &75 x: 260.0
+      y: 460.0
+    speed: 1.0
+    distance: 509.11688245431424
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *49
+    path: *52
+  stops:
+  - &76 name: "Technicke muzeum"
+    c: *53
+    stav: null
+    id: 0.0
+    bool: true
+  - &77 name: "Skacelova"
+    c: *54
+    stav: null
+    id: 0.0
+    bool: true
+  - &78 name: "Trefejova"
+    c: *55
+    stav: null
+    id: 0.0
+    bool: true
+  - &79 name: "Juzna"
+    c: *56
+    stav: null
+    id: 0.0
+    bool: true
+  - &80 name: "Hlavna"
+    c: *57
+    stav: null
+    id: 0.0
+    bool: true
+- &81 vehicles:
+  - &82 position:
+      &83 x: 100.0
+      y: 300.0
+    speed: 1.0
+    distance: 0.0
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path:
+      &84 path:
+      - &85 x: 100.0
+        y: 300.0
+      - &86 x: 300.0
+        y: 150.0
+      - &87 x: 400.0
+        y: 400.0
+      - &88 x: 400.0
+        y: 500.0
+      - &89 x: 100.0
+        y: 200.0
+      ulice: null
+  - &90 position:
+      &91 x: 183.48178472549228
+      y: 237.38866145588077
+    speed: 1.0
+    distance: 104.35223090686536
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  - &92 position:
+      &93 x: 266.96356945098455
+      y: 174.77732291176156
+    speed: 1.0
+    distance: 208.70446181373072
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  - &94 position:
+      &95 x: 323.41866775815504
+      y: 208.54666939538765
+    speed: 1.0
+    distance: 313.05669272059606
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  - &96 position:
+      &97 x: 362.1741133737154
+      y: 305.4352834342885
+    speed: 1.0
+    distance: 417.40892362746143
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  - &98 position:
+      &99 x: 400.0
+      y: 402.5029141776016
+    speed: 1.0
+    distance: 521.7611545343268
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  - &100 position:
+      &101 x: 395.15268042475583
+      y: 495.15268042475583
+    speed: 1.0
+    distance: 626.1133854411921
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  - &102 position:
+      &103 x: 321.36451031856683
+      y: 421.36451031856683
+    speed: 1.0
+    distance: 730.4656163480576
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  - &104 position:
+      &105 x: 247.57634021237794
+      y: 347.57634021237794
+    speed: 1.0
+    distance: 834.8178472549229
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  - &106 position:
+      &107 x: 173.78817010618906
+      y: 273.78817010618906
+    speed: 1.0
+    distance: 939.1700781617882
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *81
+    path: *84
+  stops:
+  - &108 name: "Ceska"
+    c: *85
+    stav: null
+    id: 0.0
+    bool: true
+  - &109 name: "Rybkova"
+    c: *86
+    stav: null
+    id: 0.0
+    bool: true
+  - &110 name: "Kravi hora"
+    c: *87
+    stav: null
+    id: 0.0
+    bool: true
+  - &111 name: "Silingrovo namesti"
+    c: *88
+    stav: null
+    id: 0.0
+    bool: true
+  - &112 name: "Tabor"
+    c: *89
+    stav: null
+    id: 0.0
+    bool: true
+- &113 vehicles:
+  - &114 position:
+      &115 x: 100.0
+      y: 100.0
+    speed: 1.0
+    distance: 0.0
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path:
+      &116 path:
+      - &117 x: 100.0
+        y: 100.0
+      - &118 x: 100.0
+        y: 200.0
+      - &119 x: 100.0
+        y: 300.0
+      - &120 x: 100.0
+        y: 500.0
+      - &121 x: 300.0
+        y: 500.0
+      - &122 x: 400.0
+        y: 500.0
+      - &123 x: 500.0
+        y: 300.0
+      - &124 x: 300.0
+        y: 150.0
+      - &125 x: 400.0
+        y: 100.0
+      ulice: null
+  - &126 position:
+      &127 x: 100.0
+      y: 228.54101966249684
+    speed: 1.0
+    distance: 128.54101966249684
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  - &128 position:
+      &129 x: 100.0
+      y: 357.0820393249937
+    speed: 1.0
+    distance: 257.0820393249937
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  - &130 position:
+      &131 x: 100.0
+      y: 485.6230589874905
+    speed: 1.0
+    distance: 385.6230589874905
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  - &132 position:
+      &133 x: 214.16407864998735
+      y: 500.0
+    speed: 1.0
+    distance: 514.1640786499873
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  - &134 position:
+      &135 x: 342.7050983124842
+      y: 500.0
+    speed: 1.0
+    distance: 642.7050983124842
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  - &136 position:
+      &137 x: 431.8622325850054
+      y: 436.27553482998917
+    speed: 1.0
+    distance: 771.246117974981
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  - &138 position:
+      &139 x: 489.3475241575014
+      y: 321.30495168499715
+    speed: 1.0
+    distance: 899.7871376374778
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  - &140 position:
+      &141 x: 416.2229123600035
+      y: 237.1671842700026
+    speed: 1.0
+    distance: 1028.3281572999747
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  - &142 position:
+      &143 x: 313.3900966300059
+      y: 160.04257247250447
+    speed: 1.0
+    distance: 1156.8691769624716
+    id: 1.0
+    zastavka: false
+    cakanie: 0.0
+    current: 1
+    linka: *113
+    path: *116
+  stops:
+  - &144 name: "Technicke muzeum"
+    c: *117
+    stav: null
+    id: 0.0
+    bool: true
+  - &145 name: "Tabor"
+    c: *118
+    stav: null
+    id: 0.0
+    bool: true
+  - &146 name: "Ceska"
+    c: *119
+    stav: null
+    id: 0.0
+    bool: true
+  - &147 name: "Semillaso"
+    c: *120
+    stav: null
+    id: 0.0
+    bool: true
+  - &148 name: "Hlavna"
+    c: *121
+    stav: null
+    id: 0.0
+    bool: true
+  - &149 name: "Silingrovo namesti"
+    c: *122
+    stav: null
+    id: 0.0
+    bool: true
+  - &150 name: "Zbojnova"
+    c: *123
+    stav: null
+    id: 0.0
+    bool: true
+  - &151 name: "Rybkova"
+    c: *124
+    stav: null
+    id: 0.0
+    bool: true
+  - &152 name: "Kolejni"
+    c: *125
+    stav: null
+    id: 0.0
+    bool: true
