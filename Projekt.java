@@ -87,8 +87,8 @@ public class Projekt extends Application {
         
         //controller.setElements(elements);
         //elements.remove(vehicle);
-        System.out.println("Elementy: ");
-        System.out.print(elements);
+        //System.out.println("Elementy: ");
+        //System.out.print(elements);
         //controller.setElements(elements);
         //controller.removeElement(vehicle);
         //controller.startTime(1);
@@ -130,12 +130,12 @@ public class Projekt extends Application {
         }
         
         //Data data = new Data(coordinates, vehicle);
-        List<MyLine> lines = new ArrayList<>();
+        /*List<MyLine> lines = new ArrayList<>();
         lines.add(line);
-        lines.add(line2);
+        lines.add(line2);*/
         
         List<Drawable> elements_two = new ArrayList<>();
-        
+        /*
         elements_two.add(ulica4);
         elements_two.add(ulica5);
         elements_two.add(ulica6);
@@ -151,14 +151,36 @@ public class Projekt extends Application {
         }
         for (int i = 0; i < line.stops.size(); i++) {
             elements_two.add(line.stops.get(i));
-        }
+        }*/
         for (int i = 0; i < line.vehicles.size(); i++) {
             elements_two.add(line.vehicles.get(i));
         }
         for (int i = 0; i < line2.vehicles.size(); i++) {
             elements_two.add(line2.vehicles.get(i));
         }
-
+        
+        YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
+        ObjectMapper mapper = new ObjectMapper(factory); 
+        mapper.findAndRegisterModules();
+        //mapper.writeValue(new File("test.yaml"), data);
+        
+        
+        Data read_data = mapper.readValue(new File("test.yaml"), Data.class);
+        
+        for (int i = 0; i < read_data.streets.size(); i++) {
+            read_data.streets.get(i).setGui();
+            elements_two.add(read_data.streets.get(i));
+        }
+        for (int i = 0; i < read_data.lines.size(); i++) {
+            for (int j = 0; j < read_data.lines.get(i).stops.size(); j++) {
+                elements_two.add(read_data.lines.get(i).stops.get(j));
+            }
+            for (int j = 0; j < read_data.lines.get(i).vehicles.size(); j++) {
+                read_data.lines.get(i).vehicles.get(j).setController(controller);
+                read_data.lines.get(i).vehicles.get(j).setGui();
+                elements_two.add(read_data.lines.get(i).vehicles.get(j));
+            }
+        }
 
         //elements_two.add(vehicle2);
         controller.setElements(elements_two);
@@ -188,20 +210,24 @@ public class Projekt extends Application {
         list_of_stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
         list_of_stops.add(new Stop("Tábor",new Coordinate(100,200)));
         
-        
+        List<MyLine> list_of_lines = new ArrayList<>();
+        list_of_lines.add(line);
+        list_of_lines.add(line2);
          
-        Data data = new Data(list_of_streets,list_of_stops);
-        
+        Data data = new Data(list_of_streets,list_of_lines);
+        /*
         
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory); 
         mapper.findAndRegisterModules();
-        mapper.writeValue(new File("test.yaml"), data);
+        //
         
         Data read_data = mapper.readValue(new File("test.yaml"), Data.class);
         for (int i = 0; i < read_data.stops.size(); i++) {
             System.out.println("STOP: "+read_data.stops.get(i).name);
-        }
+        }*/
+       
+       //mapper.writeValue(new File("test.yaml"), data);
 
     } 
 

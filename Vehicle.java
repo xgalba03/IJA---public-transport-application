@@ -5,7 +5,9 @@
  */
 package projekt;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.util.StdConverter;
 import static java.lang.Math.ceil;
@@ -29,7 +31,8 @@ import javafx.scene.text.Text;
  * @author localadmin
  */
 //@JsonDeserialize(converter=Vehicle.VehicleConstructorCall.class);
-@JsonDeserialize(converter = Vehicle.VehicleConstructorCall.class)
+//@JsonDeserialize(converter = Vehicle.VehicleConstructorCall.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Vehicle implements Drawable, TimeUpdate{
     private Coordinate position;
     private double speed = 0;
@@ -41,13 +44,14 @@ public class Vehicle implements Drawable, TimeUpdate{
     private Integer current;
     private MyLine linka;
     private Path path;
-    private MainController control;
+    
     @JsonIgnore
+    private MainController control;
     private List<Shape> gui;
     
     
     
-    private Vehicle(){}
+    public Vehicle(){}
     
     public Vehicle(Coordinate position, double speed, Path path, double ID, MyLine linka, MainController control, double distance) {
         this.id = ID;
@@ -63,23 +67,51 @@ public class Vehicle implements Drawable, TimeUpdate{
         setGui();
       
     }
+    public Coordinate getPosition(){
+        return position;
+    }
+    public double getSpeed(){
+        return speed;
+    }
+    public double getDistance(){
+        return distance;
+    }
+    @Override
+    public double getID(){
+        return this.id;
+    }
+   
+    public boolean getZastavka(){
+        return this.zastavka;
+    }
+    public double getCakanie(){
+        return this.cakanie;
+    }
+    public Integer getCurrent(){
+        return this.current;
+    }
+    
+    public MyLine getLinka(){
+        return this.linka;
+    }
 
     public Path getPath() {
         return path;
     }
     
-    @Override
-    public double getID(){
-        return this.id;
-    }
     
+    @JsonIgnore
     @Override
     public boolean getBool(){
         return this.done;
     }
+    
+    
+    
         
     
     
+    @JsonIgnore
     private void moveGui(Coordinate coordinate){
         for(Shape shape: gui){
             System.out.println("moveGui"+ this.position +"get"+shape.getTranslateX());
@@ -94,6 +126,7 @@ public class Vehicle implements Drawable, TimeUpdate{
     }
 
     
+    @JsonIgnore
     @Override
     public Integer update(LocalTime time) {
         List<Coordinate> zastavky = this.path.getPath();
@@ -146,14 +179,9 @@ public class Vehicle implements Drawable, TimeUpdate{
         return 0;
     }
     
-    public Coordinate getPosition(){
-        return position;
-    }
     
-    public double getSpeed(){
-        return speed;
-    }
     
+    @JsonIgnore
     private void highLight(Shape bus){
         //List<Coordinate> zastavky = this.path.getPath();
         control.removeHighlight();
@@ -180,13 +208,16 @@ public class Vehicle implements Drawable, TimeUpdate{
                 System.out.println(street);
             }
     }
-
+    
+    
+    @JsonIgnore
     @Override
     public String toString() {
         return "Vehicle{" + "position=" + position + ", speed=" + speed + ", id=" + id + '}';
     }
-
-    private void setGui() {
+    
+    @JsonIgnore
+    public void setGui() {
         gui = new ArrayList<>( );
         Circle bus = new Circle(position.getX(), position.getY(), 8, Color.BLUE);
         
@@ -205,7 +236,12 @@ public class Vehicle implements Drawable, TimeUpdate{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    class VehicleConstructorCall extends StdConverter<Vehicle, Vehicle>{
+    @JsonIgnore
+    public void setController(MainController control){
+        this.control = control;
+    }
+    
+    /*class VehicleConstructorCall extends StdConverter<Vehicle, Vehicle>{
         
         @Override
         public Vehicle convert(Vehicle value){
@@ -213,7 +249,7 @@ public class Vehicle implements Drawable, TimeUpdate{
             System.out.println("hello\n");
             return value;
         }
-    }
+    }*/
     
 
 }

@@ -22,15 +22,16 @@ import javafx.scene.text.Text;
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Street implements Drawable{
-    private Coordinate start;
-    private Coordinate stop;
-    private String name;
+    protected Coordinate start;
+    protected Coordinate stop;
+    protected String name;
     private double id;
     private boolean bool;
     @JsonIgnore
     private List<Shape> gui;
     
     private Street(){}
+    
     public Street(String name, Coordinate start, Coordinate stop, double id){
         this.name = name;
         this.start = start;
@@ -41,12 +42,13 @@ public class Street implements Drawable{
 
     
     @Override
+    @JsonIgnore
     public List<Shape> getGui(){
         return gui; 
     } 
     
     
-    private void setGui() {
+    public void setGui() {
         gui = new ArrayList<>( );
         Line ulica = new Line(start.getX(), start.getY(), stop.getX(), stop.getY());
         Text meno = new Text((Math.abs(start.getX() + stop.getX()) /2),  (Math.abs(start.getY() + stop.getY()) /2), name);

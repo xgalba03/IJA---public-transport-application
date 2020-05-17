@@ -14,7 +14,8 @@ import java.util.List;
  */
 public class Data {
     public List<Street> streets = new ArrayList<>();
-    public List<Stop> stops = new ArrayList<>();
+    //public List<Stop> stops = new ArrayList<>();
+    public List<MyLine> lines = new ArrayList<>();
     
     private Data(){
     }
@@ -24,18 +25,18 @@ public class Data {
         this.vehicle = vehicle;
     }*/
     
-    public Data(List<Street> streets,List<Stop> stops){
+    public Data(List<Street> streets,List<MyLine> lines){
         this.streets = streets;
-        this.stops = stops;
+        this.lines = lines;
     }
 
 
     public List<Street> getStreets() {
-        return streets;
+        return this.streets;
     }
     
-    public List<Stop> getStops() {
-        return stops;
+    public List<MyLine> getLines() {
+        return this.lines;
     }
 
 

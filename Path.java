@@ -5,13 +5,16 @@
  */
 package projekt;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
 
 /**
  *
  * @author localadmin
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Path {
     public List<Coordinate> path;
     public List<Street> ulice;
@@ -22,7 +25,7 @@ public class Path {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private Path(){}
+    public Path(){}
     
     public Path(List<Coordinate> path) {
         this.path = path;
@@ -31,11 +34,15 @@ public class Path {
     public List<Coordinate> getPath() {
         return path;
     }
+    public List<Street> getUlice() {
+        return ulice;
+    }
     
-    
+    @JsonIgnore
     private double getDistanceBetweenCoordinates(Coordinate a, Coordinate b){
         return Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
     }
+    @JsonIgnore
     public Coordinate getCoordinateByDistance(double distance){
         double length = 0;
         double currentLength = 0;

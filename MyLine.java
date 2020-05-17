@@ -5,6 +5,8 @@
  */
 package projekt;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
  *
  * @author Damian
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class MyLine {
     
     protected String name;
@@ -32,12 +35,13 @@ public class MyLine {
         this.stops = stops;
     }
     
-    void addStopToLine(Stop s){
-        this.stops.add(s);
-    }
+    public List<Vehicle> getVehicles(){
+        return this.vehicles;
+    } 
     
-    void addVehicleToLine(Vehicle v){
-        this.vehicles.add(v);
-    }
+    public List<Stop> getStops(){
+        return this.stops;
+    } 
+    
     
 }
