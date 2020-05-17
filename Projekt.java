@@ -62,6 +62,21 @@ public class Projekt extends Application {
         Street ulica6 = new Street("Štefániková",  new Coordinate(300, 300), new Coordinate(200, 400), 7);
         Street ulica7 = new Street("Roosveltova",  new Coordinate(200, 400), new Coordinate(300, 500), 8);
         
+        Street ulica8 =  new Street("",  new Coordinate(100,300), new Coordinate(300,150), 9);
+        Street ulica9 =  new Street("",  new Coordinate(300,150), new Coordinate(400,400), 10);
+        Street ulica10 = new Street("",  new Coordinate(400,400), new Coordinate(400,500), 11);
+        Street ulica11 = new Street("",  new Coordinate(400,500), new Coordinate(100,200), 12);
+        
+        
+        Street ulica12 =  new Street("",  new Coordinate(100,100), new Coordinate(100,200), 13);
+        Street ulica13 =  new Street("",  new Coordinate(100,200), new Coordinate(100,300), 14);
+        Street ulica14 = new Street("",  new Coordinate(100,300), new Coordinate(100,500), 15);
+        Street ulica15 = new Street("",  new Coordinate(100,500), new Coordinate(300,500), 16);
+        Street ulica16 = new Street("",  new Coordinate(300,500), new Coordinate(400,500), 17);
+        Street ulica17 = new Street("",  new Coordinate(400,500), new Coordinate(500,300), 18);
+        Street ulica18 = new Street("",  new Coordinate(500,300), new Coordinate(300,150), 19);
+        Street ulica19 = new Street("",  new Coordinate(300,150), new Coordinate(400,100), 20);
+        
         Path linka1 = new Path(Arrays.asList(new Coordinate(200, 100),new Coordinate(300, 200)));
         Path linka2 = new Path(Arrays.asList(new Coordinate(100, 200),new Coordinate(500, 500),new Coordinate(100, 800)));
         
@@ -100,19 +115,10 @@ public class Projekt extends Application {
         line.stops.add(new Stop("Južná",new Coordinate(200,400)));
         line.stops.add(new Stop("Hlavná",new Coordinate(300,500)));
         Path path = new Path(Arrays.asList(line.stops.get(0).c,line.stops.get(1).c,line.stops.get(2).c,line.stops.get(3).c,line.stops.get(4).c));
-        for(Integer i =0; i < 10; i++){
-            double medzera = (path.getPathSize()/10);
-            double distance = (medzera*i);
-            Coordinate start = path.getCoordinateByDistance(medzera*i);
-            System.out.print("Path size:"+medzera+"Start:"+start);
-            line.vehicles.add(new Vehicle(start,1,path,1,line,controller,distance));
-        }
         
         
-        Street ulica8 =  new Street("",  new Coordinate(100,300), new Coordinate(300,150), 9);
-        Street ulica9 =  new Street("",  new Coordinate(300,150), new Coordinate(400,400), 10);
-        Street ulica10 = new Street("",  new Coordinate(400,400), new Coordinate(400,500), 11);
-        Street ulica11 = new Street("",  new Coordinate(400,500), new Coordinate(100,200), 12);
+        
+        
         
         MyLine line2 = new MyLine("10");
         line2.stops.add(new Stop("Česká",new Coordinate(100,300)));
@@ -121,12 +127,40 @@ public class Projekt extends Application {
         line2.stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
         line2.stops.add(new Stop("Tábor",new Coordinate(100,200)));
         Path path2 = new Path(Arrays.asList(line2.stops.get(0).c,line2.stops.get(1).c,line2.stops.get(2).c,line2.stops.get(3).c,line2.stops.get(4).c));
+        
+        
+        MyLine line3 = new MyLine("10");
+        line3.stops.add(new Stop("Technické múzeum",new Coordinate(100,100)));
+        line3.stops.add(new Stop("Tábor",new Coordinate(100,200)));
+        line3.stops.add(new Stop("Česká",new Coordinate(100,300)));
+        line3.stops.add(new Stop("Semillaso",new Coordinate(100,500)));
+        line3.stops.add(new Stop("Hlavná",new Coordinate(300,500)));
+        line3.stops.add(new Stop("Šilingrovo náměstí",new Coordinate(400,500)));
+        line3.stops.add(new Stop("Zbojnova",new Coordinate(500,300)));
+        line3.stops.add(new Stop("Rybkova",new Coordinate(300,150)));
+        line3.stops.add(new Stop("Kolejní",new Coordinate(400,100)));
+        Path path3 = new Path(Arrays.asList(line3.stops.get(0).c,line3.stops.get(1).c,line3.stops.get(2).c,line3.stops.get(3).c,line3.stops.get(4).c,
+                line3.stops.get(5).c,line3.stops.get(6).c,line3.stops.get(7).c,line3.stops.get(8).c));
+        for(Integer i =0; i < 10; i++){
+            double medzera = (path.getPathSize()/10);
+            double distance = (medzera*i);
+            Coordinate start = path.getCoordinateByDistance(medzera*i);
+            System.out.print("Path size:"+medzera+"Start:"+start);
+            line.vehicles.add(new Vehicle(start,1,path,1,line,controller,distance));
+        }
         for(Integer i =0; i < 10; i++){
             double medzera = (path2.getPathSize()/10);
             double distance = (medzera*i);
             Coordinate start = path2.getCoordinateByDistance(medzera*i);
             System.out.print("Path size:"+medzera+"Start:"+start);
             line2.vehicles.add(new Vehicle(start,1,path2,1,line2,controller,distance));
+        }
+        for(Integer i =0; i < 10; i++){
+            double medzera = (path3.getPathSize()/10);
+            double distance = (medzera*i);
+            Coordinate start = path3.getCoordinateByDistance(medzera*i);
+            System.out.print("Path size:"+medzera+"Start:"+start);
+            line3.vehicles.add(new Vehicle(start,1,path3,1,line3,controller,distance));
         }
         
         //Data data = new Data(coordinates, vehicle);
@@ -157,6 +191,9 @@ public class Projekt extends Application {
         }
         for (int i = 0; i < line2.vehicles.size(); i++) {
             elements_two.add(line2.vehicles.get(i));
+        }
+        for (int i = 0; i < line3.vehicles.size(); i++) {
+            elements_two.add(line3.vehicles.get(i));
         }
         
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
@@ -196,6 +233,14 @@ public class Projekt extends Application {
         list_of_streets.add(ulica9);
         list_of_streets.add(ulica10);
         list_of_streets.add(ulica11);
+        list_of_streets.add(ulica12);
+        list_of_streets.add(ulica13);
+        list_of_streets.add(ulica14);
+        list_of_streets.add(ulica15);
+        list_of_streets.add(ulica16);
+        list_of_streets.add(ulica17);
+        list_of_streets.add(ulica18);
+        list_of_streets.add(ulica19);
         
         List<Stop> list_of_stops = new ArrayList<>();
         
@@ -213,6 +258,7 @@ public class Projekt extends Application {
         List<MyLine> list_of_lines = new ArrayList<>();
         list_of_lines.add(line);
         list_of_lines.add(line2);
+        list_of_lines.add(line3);
          
         Data data = new Data(list_of_streets,list_of_lines);
         /*
@@ -227,7 +273,7 @@ public class Projekt extends Application {
             System.out.println("STOP: "+read_data.stops.get(i).name);
         }*/
        
-      // mapper.writeValue(new File("test.yaml"), data);
+       mapper.writeValue(new File("test.yaml"), data);
 
     } 
 
